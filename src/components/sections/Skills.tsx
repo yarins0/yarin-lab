@@ -6,23 +6,27 @@ import Badge from "@/components/ui/Badge";
 const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   {
     category: "Languages",
-    tags: ["Python", "TypeScript", "JavaScript", "SQL"],
+    tags: ["Python", "Java", "C", "C++", "JavaScript", "TypeScript", "Assembly"],
   },
   {
-    category: "Frontend",
-    tags: ["React", "Next.js", "Tailwind CSS", "HTML5"],
+    category: "Web / Full-Stack",
+    tags: ["React", "Next.js", "Node.js", "Express", "Vite", "HTML", "CSS", "Tailwind CSS", "REST APIs"],
   },
   {
-    category: "Backend",
-    tags: ["Node.js", "Express", "REST APIs", "Prisma", "PostgreSQL", "MySQL"],
+    category: "Databases",
+    tags: ["PostgreSQL", "MySQL", "Prisma ORM", "SQL", "DML"],
   },
   {
-    category: "AI & Algorithms",
-    tags: ["Neural Networks", "Machine Learning", "Algorithm Design"],
+    category: "DevOps & Tools",
+    tags: ["Git", "GitHub", "Docker"],
   },
   {
-    category: "Tools & Platforms",
-    tags: ["Git", "Docker", "Vercel", "Railway", "Linux"],
+    category: "ML & AI",
+    tags: ["PyTorch"],
+  },
+  {
+    category: "Platforms",
+    tags: ["Vercel", "Railway", "Windows", "UNIX", "Linux"],
   },
 ];
 // ============================================================

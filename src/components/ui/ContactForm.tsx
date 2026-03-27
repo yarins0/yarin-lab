@@ -1,6 +1,7 @@
 "use client";
 
 import { useReducer, useRef } from "react";
+import { useAnimatedLabel } from "@/hooks/useAnimatedLabel";
 
 /*
   Form state machine — all possible states the form can be in.
@@ -199,9 +200,11 @@ function ErrorMessage({ message }: { message: string }) {
 
 /* Submit button — label and style change based on form status */
 function SubmitButton({ status }: { status: Status }) {
+  const animatedSending = useAnimatedLabel(status === "submitting", "Sending");
+
   const labels: Record<Status, string> = {
     idle: "Send Message",
-    submitting: "Sending…",
+    submitting: animatedSending,
     success: "Sent ✓",
     error: "Send Message",
   };

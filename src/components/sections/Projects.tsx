@@ -10,24 +10,33 @@ const PROJECTS: Project[] = [
   {
     name: "TuneCraft",
     description:
-      "A full-stack web app with user authentication, real-time updates, and a REST API. Built to explore end-to-end TypeScript across the entire stack.",
-    techStack: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "Railway", "Vercel"],
+      "Full-stack playlist manager for Spotify, SoundCloud, and Tidal. " +
+      "Features composable shuffle algorithms (artist spread, genre spread, chronological mix), " +
+      "automated reshuffles via a background cron job, and tools to merge, split, and deduplicate playlists. " +
+      "Enriches every track with audio features and genre tags via the ReccoBeats and Last.fm APIs.",
+    techStack: ["React", "TypeScript", "Vite", "Node.js", "Express", "PostgreSQL", "Prisma", "Railway", "Vercel"],
     githubUrl: `${GITHUB_PROFILE_URL}/TuneCraft`,
     liveDemoUrl: "https://tune-craft-seven.vercel.app/",
   },
   {
     name: "Backgammon Bots",
     description:
-      "A Python implementation of the classic board game Backgammon, featuring both human and AI players. This project allows you to play against an AI opponent or watch two AI players compete against each other. The AI uses different strategies for decision making.",
-    techStack: ["Python"],
+      "Playable Backgammon with five interchangeable AI players: random, heuristic (weighted board evaluation), " +
+      "minimax with alpha-beta pruning, Monte Carlo Tree Search, and a trained PyTorch neural network. " +
+      "Supports human vs. AI and AI vs. AI modes with a Tkinter GUI. Containerised with Docker.",
+    techStack: ["Python", "PyTorch", "Docker"],
     githubUrl: `${GITHUB_PROFILE_URL}/Backgammon_Mini`,
   },
   {
     name: "faceb00k.com",
     description:
-      "A demonstration web application that mimics the login and registration flow of Facebook. Collects user information and securely stores it in a MySQL database using a Node.js backend. The frontend is designed to resemble Facebook's familiar interface.",
-    techStack: ["Node.js", "MySQL", "HTML5"],
+      "A BGU university security assignment replicating Facebook's login and registration UI. " +
+      "Demonstrates credential harvesting techniques, SQL injection prevention via parameterised queries, " +
+      "and HTTP security headers (helmet.js) — built to explore the gap between a convincing phishing " +
+      "interface and secure backend practices.",
+    techStack: ["Node.js", "Express", "MySQL", "HTML5", "CSS3"],
     githubUrl: `${GITHUB_PROFILE_URL}/faceb00k.com`,
+    liveDemoUrl: "/faceb00k/",
   },
 ];
 // ============================================================

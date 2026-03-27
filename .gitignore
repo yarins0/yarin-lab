@@ -47,7 +47,11 @@ next-env.d.ts
 .vscode/
 .curser/
 .claude/
+.claude-flow/
 .gstack/
+
+# Claude Code / claude-flow config
+.mcp.json
 
 # Local notes
 TODO.md

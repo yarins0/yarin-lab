@@ -4,7 +4,10 @@
 const CONTENT = {
   name: "Yarin Solomon",
   headline: "Full-Stack Software Developer",
-  bio: "Computer science graduate from Ben-Gurion University (GPA: 85) with expertise in software development and artificial intelligence. Demonstrated ability to design complex systems, including AI applications utilizing neural networks and advanced algorithms. Particularly interested in API development, microservices architecture, and system integration, while eager to explore diverse backend development paths.",
+  bio:
+    "Computer science graduate from Ben-Gurion University (GPA: 85) with expertise in software development and artificial intelligence. " +
+    "Demonstrated ability to design complex systems, including AI applications utilizing neural networks and advanced algorithms. " +
+    "Particularly interested in API development, microservices architecture, and system integration, while eager to explore diverse backend development paths.",
   ctaLabel: "View My Work",
   ctaHref: "#projects",
   cvPath: "/cv.pdf",

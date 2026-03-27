@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>faceb00k</title>
+  <meta name="description" content="Log in to connect with friends and the world around you." />
+  <meta name="theme-color" content="#1877f2" />
+  <base href="/faceb00k/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="index-body">
+
+<div class="demo-banner" role="note" aria-label="Demo mode notice">
+  Demo Mode &mdash; No live backend. Credentials entered here are <strong>not</strong> stored or transmitted.
+</div>
+
+<div id="edu-disclaimer" class="edu-disclaimer" role="note" aria-label="Educational disclaimer">
+  <strong>הבהרה:</strong> פרויקט זה מיועד למטרות לימוד ומחקר אבטחה בלבד. אין להשתמש בו כדי לפגוע במשתמשים אמיתיים או להפר חוק, מדיניות או תנאי שימוש.<br />
+  <strong>Disclaimer:</strong> This project is for educational and security-research purposes only. Do not use it to target real users or violate any law, policy, or terms of service.
+</div>
+
+  <main class="container">
+    <section class="brand" aria-label="faceb00k brand">
+      <div class="logo" aria-label="faceb00k">faceb00k</div>
+      <h2 class="tagline">Connect with friends and the world around you on faceb00k.</h2>
+    </section>
+
+    <section class="card" aria-label="Login form">
+      <form aria-describedby="login-help" method="post" action="#">
+        <div>
+          <label for="email">Email or phone number</label>
+          <input class="input" type="text" id="email" name="email" autocomplete="username" required />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <div class="password-wrapper">
+            <input class="input input-password" type="password" id="password" name="password" autocomplete="current-password" required />
+            <button type="button" id="toggle-password" class="toggle-password" aria-label="Show password">
+              <!-- eye-open icon -->
+              <svg id="icon-eye" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <!-- eye-off icon (hidden by default via CSS) -->
+              <svg id="icon-eye-off" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-primary" type="submit">Log in</button>
+          <a class="link" href="#" id="forgot">Forgot password?</a>
+          <div class="divider" role="presentation"></div>
+          <button class="btn btn-secondary" type="button" id="create-account">Create new account</button>
+        </div>
+
+        <p class="note" id="login-help">Demo mode &mdash; submissions are simulated. <a class="link" href="https://github.com/yarins0/faceb00k.com" target="_blank" rel="noopener">View backend source on GitHub.</a></p>
+      </form>
+    </section>
+  </main>
+
+  <footer aria-label="Site links">
+    <div>Beta © 2025</div>
+    <ul>
+      <li><a href="index.html">Sign Up</a></li>
+      <li><a href="index.html">Log In</a></li>
+      <li><a href="#">Messenger</a></li>
+      <li><a href="#">Privacy</a></li>
+      <li><a href="#">Terms</a></li>
+      <li><a href="#">Help</a></li>
+    </ul>
+  </footer>
+
+  <script src="login.js"></script>
+</body>
+</html>
