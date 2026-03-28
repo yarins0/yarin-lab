@@ -19,13 +19,16 @@ const PROJECTS: Project[] = [
     liveDemoUrl: "https://tune-craft-seven.vercel.app/",
   },
   {
-    name: "Backgammon Bots",
+    name: "Backgammon AI",
     description:
-      "Playable Backgammon with five interchangeable AI players: random, heuristic (weighted board evaluation), " +
-      "minimax with alpha-beta pruning, Monte Carlo Tree Search, and a trained PyTorch neural network. " +
-      "Supports human vs. AI and AI vs. AI modes with a Tkinter GUI. Containerised with Docker.",
-    techStack: ["Python", "PyTorch", "Docker"],
+      "Full Backgammon engine with five AI opponents of increasing sophistication: random, " +
+      "heuristic (six-feature weighted evaluation), depth-limited minimax, MCTS with UCB1, " +
+      "and a PyTorch neural network trained to outperform the heuristic (~60% win rate). " +
+      "Includes a tournament mode that runs any combination of bots round-robin, " +
+      "with per-bot parameter tuning via a setup UI — no code changes required.",
+    techStack: ["Python", "PyTorch", "Tkinter", "Docker"],
     githubUrl: `${GITHUB_PROFILE_URL}/Backgammon_Mini`,
+    liveDemoUrl: "/backgammon/",
   },
   {
     name: "faceb00k.com",
