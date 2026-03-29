@@ -28,11 +28,11 @@ const geistMono = Geist_Mono({
 */
 export const metadata: Metadata = {
   icons: { icon: "/favicon.svg" },
-  title: "Yarin Solomon — Software Developerr",
+  title: "Yarin Solomon — Software Developer",
   description:
     "Full-stack software developer with a CS background from Ben-Gurion University. Specialising in API development, microservices, and AI-integrated systems. Open to work.",
   openGraph: {
-    title: "Yarin Solomon — Software Developerr",
+    title: "Yarin Solomon — Software Developer",
     description:
       "Full-stack software developer with a CS background from Ben-Gurion University. Open to work.",
     url: "https://yarin-lab.vercel.app",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Yarin Solomon — Software Developerr",
+    title: "Yarin Solomon — Software Developer",
     description:
       "Full-stack software developer with a CS background from Ben-Gurion University. Open to work.",
   },
