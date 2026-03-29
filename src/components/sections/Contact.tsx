@@ -88,7 +88,7 @@ function SocialLink({
 function Footer() {
   return (
     <p className="mt-16 text-xs text-faint">
-      © {new Date().getFullYear()} Yarin Solomon. Built with Next.js &amp; Tailwind CSS.
+      &copy; {new Date().getFullYear()}{" "}Yarin Solomon. Built with Next.js &amp; Tailwind CSS.
     </p>
   );
 }

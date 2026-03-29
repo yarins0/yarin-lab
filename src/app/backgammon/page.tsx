@@ -107,46 +107,104 @@ function DemoPreview() {
       <img
         src="/backgammon/backgammon_demo.gif"
         alt="Backgammon AI gameplay demo"
-        className="mx-auto block max-h-80 w-auto"
+        className="mx-auto block max-h-[600px] w-auto"
       />
     </div>
   );
 }
 
+const DOWNLOAD_ICON = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="14"
+    height="14"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+);
+
+type DownloadOption = {
+  platform: string;
+  label: string;
+  filename: string;
+  note: string;
+  href: string | null; // null = coming soon
+};
+
+const DOWNLOAD_OPTIONS: DownloadOption[] = [
+  {
+    platform: "Windows",
+    label: "Download (zip)",
+    filename: "BackgammonAI_windows.zip",
+    note: "Extract and run from inside the folder · Launches instantly",
+    href: "/backgammon/BackgammonAI_windows.zip",
+  },
+  {
+    platform: "Windows",
+    label: "Download (portable .exe)",
+    filename: "BackgammonAI.exe",
+    note: "Single file, run from anywhere · First launch takes ~60 s",
+    href: "/backgammon/BackgammonAI.exe",
+  },
+  {
+    platform: "macOS",
+    label: "Download (.app zip)",
+    filename: "BackgammonAI_mac.zip",
+    note: "Coming soon",
+    href: null,
+  },
+];
+
 function DownloadCard() {
   return (
-    <div className="mb-12 flex flex-wrap items-center justify-between gap-6 rounded-xl border border-edge bg-canvas-tint px-7 py-6">
-      <div className="flex flex-col gap-1">
-        <span className="text-xs font-semibold uppercase tracking-widest text-faint">
-          Windows executable
-        </span>
-        <span className="text-base font-semibold text-ink">BackgammonAI.exe</span>
-        <span className="text-sm text-body">
-          Requires Windows 10 or later &middot; No install needed
-        </span>
+    <div className="mb-12">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-faint">
+        Downloads &middot; Windows 10+ &middot; No install needed
+      </p>
+      <div className="grid gap-3 sm:grid-cols-3">
+        {DOWNLOAD_OPTIONS.map((opt) => (
+          <DownloadOption key={opt.filename} opt={opt} />
+        ))}
       </div>
-      <a
-        href="/backgammon/BackgammonAI.exe"
-        download
-        className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-accent-dark"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="15"
-          height="15"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+    </div>
+  );
+}
+
+function DownloadOption({ opt }: { opt: DownloadOption }) {
+  const isAvailable = opt.href !== null;
+
+  return (
+    <div className="flex flex-col gap-3 rounded-xl border border-edge bg-canvas-tint px-5 py-4">
+      <div className="flex flex-col gap-0.5">
+        <span className="text-xs font-semibold uppercase tracking-widest text-faint">
+          {opt.platform}
+        </span>
+        <span className="text-sm font-semibold text-ink">{opt.filename}</span>
+        <span className="text-xs leading-relaxed text-body">{opt.note}</span>
+      </div>
+      {isAvailable ? (
+        <a
+          href={opt.href!}
+          download
+          className="mt-auto inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-accent-dark"
         >
-          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-          <polyline points="7 10 12 15 17 10" />
-          <line x1="12" y1="15" x2="12" y2="3" />
-        </svg>
-        Download
-      </a>
+          {DOWNLOAD_ICON}
+          {opt.label}
+        </a>
+      ) : (
+        <span className="mt-auto inline-flex items-center gap-1.5 whitespace-nowrap rounded-lg border border-edge px-4 py-2 text-xs font-semibold text-faint">
+          {opt.label}
+        </span>
+      )}
     </div>
   );
 }
