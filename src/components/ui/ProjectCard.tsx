@@ -34,7 +34,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       <ProjectHeader name={project.name} />
       <ProjectDescription description={project.description} />
       <TechStack tags={project.techStack} />
-      <ProjectLinks githubUrl={project.githubUrl} liveDemoUrl={project.liveDemoUrl} />
+      <ProjectLinks githubUrl={project.githubUrl} liveDemoUrl={project.liveDemoUrl} internalDemo={project.internalDemo} />
     </article>
   );
 }
@@ -72,9 +72,11 @@ function TechStack({ tags }: { tags: string[] }) {
 function ProjectLinks({
   githubUrl,
   liveDemoUrl,
+  internalDemo,
 }: {
   githubUrl: string;
   liveDemoUrl?: string;
+  internalDemo?: boolean;
 }) {
   return (
     <div className="flex items-center gap-4 text-sm font-medium">
@@ -86,7 +88,7 @@ function ProjectLinks({
       >
         GitHub →
       </a>
-      {liveDemoUrl && <DemoLink href={liveDemoUrl} internal={project.internalDemo} />}
+      {liveDemoUrl && <DemoLink href={liveDemoUrl} internal={internalDemo} />}
     </div>
   );
 }
