@@ -26,7 +26,7 @@ const PROJECTS: Project[] = [
       "and a PyTorch neural network trained to outperform the heuristic (~60% win rate). " +
       "Includes a tournament mode that runs any combination of bots round-robin, " +
       "with per-bot parameter tuning via a setup UI — no code changes required.",
-    techStack: ["Python", "PyTorch", "Tkinter", "Docker"],
+    techStack: ["Python", "PyTorch", "Tkinter", "PyInstaller"],
     githubUrl: `${GITHUB_PROFILE_URL}/Backgammon_Mini`,
     liveDemoUrl: "/backgammon/",
   },
