@@ -21,7 +21,7 @@ const BOTS = [
   {
     rank: "Level 3",
     name: "Minimax",
-    desc: "Depth-limited minimax search with alpha-beta pruning over the heuristic evaluator.",
+    desc: "Depth-limited minimax search over the heuristic evaluator.",
   },
   {
     rank: "Level 4",
