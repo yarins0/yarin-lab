@@ -44,12 +44,20 @@ function parseAndValidateBody(body: unknown): {
   };
 }
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 function buildEmailHtml(name: string, email: string, message: string): string {
   return `
-    <p><strong>Name:</strong> ${name}</p>
-    <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+    <p><strong>Email:</strong> ${escapeHtml(email)}</p>
     <p><strong>Message:</strong></p>
-    <p style="white-space: pre-wrap">${message}</p>
+    <p style="white-space: pre-wrap">${escapeHtml(message)}</p>
   `;
 }
 
