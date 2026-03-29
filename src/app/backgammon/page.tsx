@@ -159,8 +159,8 @@ const DOWNLOAD_OPTIONS: DownloadOption[] = [
     platform: "macOS",
     label: "Download (.app zip)",
     filename: "BackgammonAI_mac.zip",
-    note: "Coming soon",
-    href: null,
+    note: "Extract and double-click BackgammonAI.app to run",
+    href: "https://github.com/yarins0/Backgammon_Mini/releases/download/v1.0.0/BackgammonAI_macos.zip",
   },
 ];
 
