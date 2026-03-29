@@ -7,17 +7,18 @@ import { useState, useEffect } from "react";
   Adding a new section to the page only requires adding an entry here.
 */
 const NAV_LINKS = [
-  { label: "About",    href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills",   href: "#skills" },
-  { label: "Contact",  href: "#contact" },
+  { label: "About",    href: "/#about" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Skills",   href: "/#skills" },
+  { label: "Contact",  href: "/#contact" },
 ] as const;
 
 /*
   The section IDs watched by IntersectionObserver to determine
   which nav link should appear active.
 */
-const SECTION_IDS = NAV_LINKS.map((link) => link.href.slice(1));
+// Strip the leading "/#" to get bare section IDs (e.g. "/#about" → "about")
+const SECTION_IDS = NAV_LINKS.map((link) => link.href.slice(2));
 
 /*
   Navbar — sticky top navigation bar with:
@@ -49,7 +50,7 @@ export default function Navbar() {
 function SiteName() {
   return (
     <a
-      href="#about"
+      href="/#about"
       className="text-sm font-semibold text-ink transition-colors hover:text-accent"
     >
       Yarin Solomon
@@ -66,7 +67,7 @@ function DesktopLinks({ activeSection }: { activeSection: string }) {
           key={link.href}
           href={link.href}
           label={link.label}
-          isActive={activeSection === link.href.slice(1)}
+          isActive={activeSection === link.href.slice(2)}
         />
       ))}
       <CvButton />
@@ -115,7 +116,7 @@ function MobileMenu({
             <NavLink
               href={link.href}
               label={link.label}
-              isActive={activeSection === link.href.slice(1)}
+              isActive={activeSection === link.href.slice(2)}
               onClick={onClose}
             />
           </li>
