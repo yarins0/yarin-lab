@@ -146,14 +146,14 @@ const DOWNLOAD_OPTIONS: DownloadOption[] = [
     label: "Download (zip)",
     filename: "BackgammonAI_windows.zip",
     note: "Extract and run from inside the folder · Launches instantly",
-    href: "/backgammon/BackgammonAI_windows.zip",
+    href: "https://github.com/yarins0/Backgammon_Mini/releases/download/v1.0.0/BackgammonAI_windows.zip",
   },
   {
     platform: "Windows",
     label: "Download (portable .exe)",
     filename: "BackgammonAI.exe",
     note: "Single file, run from anywhere · First launch takes ~60 s",
-    href: "/backgammon/BackgammonAI.exe",
+    href: "https://github.com/yarins0/Backgammon_Mini/releases/download/v1.0.0/BackgammonAI.exe",
   },
   {
     platform: "macOS",
