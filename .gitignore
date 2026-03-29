@@ -20,8 +20,6 @@
 # production
 /build
 
-/public/cv.pdf
-
 # Large binaries — hosted on GitHub Releases, not served from the repo
 /public/backgammon/*.exe
 /public/backgammon/*.zip
