@@ -29,6 +29,7 @@ const PROJECTS: Project[] = [
     techStack: ["Python", "PyTorch", "Tkinter", "PyInstaller"],
     githubUrl: `${GITHUB_PROFILE_URL}/Backgammon_Mini`,
     liveDemoUrl: "/backgammon/",
+    internalDemo: true,
   },
   {
     name: "faceb00k.com",

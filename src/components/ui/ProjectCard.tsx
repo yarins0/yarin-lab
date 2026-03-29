@@ -12,7 +12,9 @@ export type Project = {
   description: string;
   techStack: string[];
   githubUrl: string;
-  liveDemoUrl?: string; // optional — not every project has a live demo
+  liveDemoUrl?: string;   // optional — not every project has a live demo
+  internalDemo?: boolean; // true only if the demo page includes the portfolio navbar (e.g. /backgammon/)
+                          // internal demos navigate in the same tab; all others open in a new tab
 };
 
 /*
@@ -84,16 +86,24 @@ function ProjectLinks({
       >
         GitHub →
       </a>
-      {liveDemoUrl && (
-        <a
-          href={liveDemoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-accent underline-offset-2 transition-colors hover:text-accent-dark hover:underline"
-        >
-          Live Demo →
-        </a>
-      )}
+      {liveDemoUrl && <DemoLink href={liveDemoUrl} internal={project.internalDemo} />}
     </div>
+  );
+}
+
+/*
+  DemoLink — opens demos in a new tab by default so the portfolio stays open.
+  Set internalDemo: true on a project only if its demo page includes the
+  portfolio navbar (giving the user a way back without the browser back button).
+*/
+function DemoLink({ href, internal }: { href: string; internal?: boolean }) {
+  return (
+    <a
+      href={href}
+      {...(!internal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      className="text-accent underline-offset-2 transition-colors hover:text-accent-dark hover:underline"
+    >
+      Live Demo →
+    </a>
   );
 }

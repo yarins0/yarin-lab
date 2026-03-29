@@ -30,12 +30,12 @@ export const metadata: Metadata = {
   icons: { icon: "/favicon.svg" },
   title: "Yarin Solomon — Software Developerr",
   description:
-    "Full-stack software developerr with a CS background from Ben-Gurion University. Specialising in API development, microservices, and AI-integrated systems. Open to work.",
+    "Full-stack software developer with a CS background from Ben-Gurion University. Specialising in API development, microservices, and AI-integrated systems. Open to work.",
   openGraph: {
     title: "Yarin Solomon — Software Developerr",
     description:
-      "Full-stack software developerr with a CS background from Ben-Gurion University. Open to work.",
-    url: "https://yarin-portfolio.vercel.app",
+      "Full-stack software developer with a CS background from Ben-Gurion University. Open to work.",
+    url: "https://yarin-lab.vercel.app",
     siteName: "Yarin Solomon",
     locale: "en_US",
     type: "website",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "Yarin Solomon — Software Developerr",
     description:
-      "Full-stack software developerr with a CS background from Ben-Gurion University. Open to work.",
+      "Full-stack software developer with a CS background from Ben-Gurion University. Open to work.",
   },
 };
 
