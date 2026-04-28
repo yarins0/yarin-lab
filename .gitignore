@@ -54,6 +54,8 @@ next-env.d.ts
 
 # Claude Code / claude-flow config
 .mcp.json
+CLAUDE.md
+AGENTS.md
 
 # Local notes
 TODO.md
