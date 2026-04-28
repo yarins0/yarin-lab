@@ -10,11 +10,11 @@ const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   },
   {
     category: "Web / Full-Stack",
-    tags: ["React", "Next.js", "Node.js", "Express", "Vite", "HTML", "CSS", "Tailwind CSS", "REST APIs"],
+    tags: ["React", "Next.js", "Node.js", "Express", "Vite", "HTML", "CSS", "Tailwind CSS", "REST APIs", "OAuth 2.0", "JWT",  "FastAPI"],
   },
   {
     category: "Databases",
-    tags: ["PostgreSQL", "MySQL", "Prisma ORM", "SQL", "DML"],
+    tags: ["PostgreSQL", "MySQL", "Prisma ORM", "SQL", "NoSQL", "SQLite"],
   },
   {
     category: "DevOps & Tools",
@@ -22,7 +22,7 @@ const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   },
   {
     category: "ML & AI",
-    tags: ["PyTorch"],
+    tags: ["PyTorch", "LangChain"],
   },
   {
     category: "Platforms",

@@ -1,4 +1,5 @@
-import ProjectCard, { type Project } from "@/components/ui/ProjectCard";
+import { type Project } from "@/components/ui/ProjectCard";
+import ProjectCarousel from "@/components/ui/ProjectCarousel";
 
 // ============================================================
 // Project data — add, remove, or update entries to change the grid
@@ -14,7 +15,7 @@ const PROJECTS: Project[] = [
       "Features composable shuffle algorithms (artist spread, genre spread, chronological mix), " +
       "automated reshuffles via a background cron job, and tools to merge, split, and deduplicate playlists. " +
       "Enriches every track with audio features and genre tags via the ReccoBeats and Last.fm APIs.",
-    techStack: ["React", "TypeScript", "Vite", "Node.js", "Express", "PostgreSQL", "Prisma", "Railway", "Vercel"],
+    techStack: ["React", "TypeScript", "Vite", "Node.js", "Express", "PostgreSQL", "Prisma", "Railway", "Vercel", "OAuth 2.0", "JWT"],
     githubUrl: `${GITHUB_PROFILE_URL}/TuneCraft`,
     liveDemoUrl: "https://tune-craft-seven.vercel.app/",
   },
@@ -30,6 +31,17 @@ const PROJECTS: Project[] = [
     githubUrl: `${GITHUB_PROFILE_URL}/Backgammon_Mini`,
     liveDemoUrl: "/backgammon/",
     internalDemo: true,
+  },
+  {
+    name: "WhatsApp Job Screener",
+    description:
+      "LangChain agent that monitors WhatsApp groups for job postings, classifies each message with Claude Haiku, " +
+      "extracts structured fields (title, company, location, skills, salary, remote), " +
+      "deduplicates via SQLite hash checks, and filters against personal preferences. " +
+      "Forwards matches as instant Telegram alerts and a scheduled daily digest. " +
+      "Covers the core LangChain primitives: LCEL chains, AgentExecutor tools, Pydantic output parsers, and LangSmith tracing.",
+    techStack: ["Python", "LangChain", "FastAPI", "Claude Haiku", "SQLite", "APScheduler", "Node.js", "whatsapp-web.js", "Telegram Bot API", "LangSmith"],
+    githubUrl: "https://github.com/yarins0/whatsapp-job-screener",
   },
   {
     name: "faceb00k.com",
@@ -58,7 +70,7 @@ export default function Projects() {
       className="mx-auto max-w-4xl scroll-mt-20 px-6 py-24"
     >
       <SectionHeader githubUrl={GITHUB_PROFILE_URL} />
-      <ProjectGrid projects={PROJECTS} />
+      <ProjectCarousel projects={PROJECTS} />
     </section>
   );
 }
@@ -86,13 +98,3 @@ function SectionHeader({ githubUrl }: { githubUrl: string }) {
   );
 }
 
-/* Renders the responsive card grid */
-function ProjectGrid({ projects }: { projects: Project[] }) {
-  return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {projects.map((project) => (
-        <ProjectCard key={project.name} project={project} />
-      ))}
-    </div>
-  );
-}
