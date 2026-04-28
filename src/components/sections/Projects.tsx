@@ -15,7 +15,7 @@ const PROJECTS: Project[] = [
       "Features composable shuffle algorithms (artist spread, genre spread, chronological mix), " +
       "automated reshuffles via a background cron job, and tools to merge, split, and deduplicate playlists. " +
       "Enriches every track with audio features and genre tags via the ReccoBeats and Last.fm APIs.",
-    techStack: ["React", "TypeScript", "Vite", "Node.js", "Express", "PostgreSQL", "Prisma", "Railway", "Vercel", "OAuth 2.0", "JWT"],
+    techStack: ["React", "TypeScript", "Vite", "Node.js", "Express", "PostgreSQL", "Prisma", "Railway", "Vercel", "REST APIs", "OAuth 2.0", "JWT"],
     githubUrl: `${GITHUB_PROFILE_URL}/TuneCraft`,
     liveDemoUrl: "https://tune-craft-seven.vercel.app/",
   },
