@@ -18,15 +18,15 @@ const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   },
   {
     category: "DevOps & Tools",
-    tags: ["Git", "GitHub", "Docker"],
+    tags: ["Git", "GitHub", "Docker", "Claude Code", "Cursor"],
   },
   {
     category: "ML & AI",
     tags: ["PyTorch", "LangChain"],
   },
   {
-    category: "Platforms",
-    tags: ["Vercel", "Railway", "Windows", "UNIX", "Linux"],
+    category: "Operating Systems & Platforms",
+    tags: ["Vercel", "Railway", "Windows", "UNIX", "Linux", "VS Code", "PyCharm"],
   },
 ];
 // ============================================================
