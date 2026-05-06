@@ -15,7 +15,7 @@ const PROJECTS: Project[] = [
       "Features composable shuffle algorithms (artist spread, genre spread, chronological mix), " +
       "automated reshuffles via a background cron job, and tools to merge, split, and deduplicate playlists. " +
       "Enriches every track with audio features and genre tags via the ReccoBeats and Last.fm APIs.",
-    techStack: ["React", "TypeScript", "Vite", "Node.js", "Express", "PostgreSQL", "Prisma", "Railway", "Vercel", "REST APIs", "OAuth 2.0", "JWT"],
+    techStack: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "OAuth 2.0", "REST APIs", "JWT", "Vite", "Railway", "Vercel"],
     githubUrl: `${GITHUB_PROFILE_URL}/TuneCraft`,
     liveDemoUrl: "https://tune-craft-seven.vercel.app/",
   },
@@ -33,14 +33,13 @@ const PROJECTS: Project[] = [
     internalDemo: true,
   },
   {
-    name: "WhatsApp Job Screener",
-    description:
-      "LangChain agent that monitors WhatsApp groups for job postings, classifies each message with Claude Haiku, " +
-      "extracts structured fields (title, company, location, skills, salary, remote), " +
-      "deduplicates via SQLite hash checks, and filters against personal preferences. " +
-      "Forwards matches as instant Telegram alerts and a scheduled daily digest. " +
-      "Covers the core LangChain primitives: LCEL chains, AgentExecutor tools, Pydantic output parsers, and LangSmith tracing.",
-    techStack: ["Python", "LangChain", "FastAPI", "Claude Haiku", "SQLite", "APScheduler", "Node.js", "whatsapp-web.js", "Telegram Bot API", "LangSmith"],
+    name: "Job Screening Agent",
+   description:
+  "Multi-source LangChain pipeline ingesting job postings from WhatsApp groups, Telegram channels, and web scrapers. " +
+  "A LangGraph StateGraph classifies and extracts structured fields with Claude Haiku using adaptive single/two-pass inference. " +
+  "Deduplicates via SQLite, filters against personal preferences, and delivers Telegram alerts and a daily digest. " +
+  "Includes ChromaDB semantic search and a FastAPI ingest API with an async retry queue.",
+    techStack: ["Python", "LangChain", "LangGraph", "Claude Haiku", "FastAPI", "ChromaDB", "Telegram Bot API", "SQLite", "whatsapp-web.js", "Telethon", "Node.js", "APScheduler", "LangSmith"],
     githubUrl: "https://github.com/yarins0/whatsapp-job-screener",
   },
   {

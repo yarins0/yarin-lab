@@ -1,45 +1,34 @@
+"use client";
+import { useState } from "react";
 import Badge from "./Badge";
 
-/*
-  The shape of data a ProjectCard expects.
-  Defining it as a TypeScript `type` here means:
-    1. The component is self-documenting — you can see exactly what it needs.
-    2. TypeScript will error if you forget a required field.
-  Exporting it allows the Projects section (and future pages) to reuse this type.
-*/
 export type Project = {
   name: string;
   description: string;
   techStack: string[];
   githubUrl: string;
-  liveDemoUrl?: string;   // optional — not every project has a live demo
-  internalDemo?: boolean; // true only if the demo page includes the portfolio navbar (e.g. /backgammon/)
-                          // internal demos navigate in the same tab; all others open in a new tab
+  liveDemoUrl?: string;
+  internalDemo?: boolean;
 };
 
-/*
-  ProjectCard — displays a single project with its name, description,
-  tech stack badges, and action links.
+const DESCRIPTION_EXPAND_THRESHOLD = 220;
+const VISIBLE_BADGE_COUNT = 5;
 
-  Props: a single `project` object of type Project (defined above).
-
-  Layout breakdown:
-    - The outer <article> is the card shell with border, shadow, and hover lift.
-    - Inside: a flex column with the content at the top and links pinned to the bottom.
-    - `group` on the article enables the `group-hover:` variant on child elements.
-*/
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group flex flex-col rounded-2xl border border-edge bg-canvas p-6 shadow-sm transition-shadow duration-200 hover:shadow-md">
+    <article className="group flex h-full flex-col rounded-2xl border border-edge bg-canvas p-6 shadow-sm transition-shadow duration-200 hover:shadow-md">
       <ProjectHeader name={project.name} />
       <ProjectDescription description={project.description} />
       <TechStack tags={project.techStack} />
-      <ProjectLinks githubUrl={project.githubUrl} liveDemoUrl={project.liveDemoUrl} internalDemo={project.internalDemo} />
+      <ProjectLinks
+        githubUrl={project.githubUrl}
+        liveDemoUrl={project.liveDemoUrl}
+        internalDemo={project.internalDemo}
+      />
     </article>
   );
 }
 
-/* Renders the project name */
 function ProjectHeader({ name }: { name: string }) {
   return (
     <h3 className="mb-2 text-lg font-semibold text-ink transition-colors duration-150 group-hover:text-accent">
@@ -48,27 +37,58 @@ function ProjectHeader({ name }: { name: string }) {
   );
 }
 
-/* Renders the short description paragraph */
 function ProjectDescription({ description }: { description: string }) {
-  return (
-    <p className="mb-4 flex-1 text-sm leading-relaxed text-body">
-      {description}
-    </p>
-  );
-}
+  const [isExpanded, setIsExpanded] = useState(false);
+  const isLong = description.length > DESCRIPTION_EXPAND_THRESHOLD;
 
-/* Renders the row of tech stack Badge pills */
-function TechStack({ tags }: { tags: string[] }) {
   return (
-    <div className="mb-4 flex flex-wrap gap-2">
-      {tags.map((tag) => (
-        <Badge key={tag} label={tag} />
-      ))}
+    <div className="mb-4">
+      <p className={`text-sm leading-relaxed text-body${isExpanded ? "" : " line-clamp-6"}`}>
+        {description}
+      </p>
+      {isLong && (
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="mt-1 text-xs font-medium text-accent hover:underline"
+        >
+          {isExpanded ? "Show less" : "Show more"}
+        </button>
+      )}
     </div>
   );
 }
 
-/* Renders the GitHub and Live Demo links */
+function TechStack({ tags }: { tags: string[] }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const hasMore = tags.length > VISIBLE_BADGE_COUNT;
+  const visibleTags = isExpanded ? tags : tags.slice(0, VISIBLE_BADGE_COUNT);
+  const hiddenCount = tags.length - VISIBLE_BADGE_COUNT;
+
+  return (
+    <div className="mb-4 flex flex-wrap gap-2">
+      {visibleTags.map((tag) => (
+        <Badge key={tag} label={tag} />
+      ))}
+      {hasMore && !isExpanded && (
+        <button
+          onClick={() => setIsExpanded(true)}
+          className="inline-flex items-center rounded-full bg-divider px-3 py-1 text-xs font-medium text-accent hover:bg-edge"
+        >
+          +{hiddenCount} more
+        </button>
+      )}
+      {hasMore && isExpanded && (
+        <button
+          onClick={() => setIsExpanded(false)}
+          className="inline-flex items-center rounded-full bg-divider px-3 py-1 text-xs font-medium text-accent hover:bg-edge"
+        >
+          Show less
+        </button>
+      )}
+    </div>
+  );
+}
+
 function ProjectLinks({
   githubUrl,
   liveDemoUrl,
@@ -79,7 +99,7 @@ function ProjectLinks({
   internalDemo?: boolean;
 }) {
   return (
-    <div className="flex items-center gap-4 text-sm font-medium">
+    <div className="mt-auto flex items-center gap-4 text-sm font-medium">
       <a
         href={githubUrl}
         target="_blank"
@@ -93,11 +113,6 @@ function ProjectLinks({
   );
 }
 
-/*
-  DemoLink — opens demos in a new tab by default so the portfolio stays open.
-  Set internalDemo: true on a project only if its demo page includes the
-  portfolio navbar (giving the user a way back without the browser back button).
-*/
 function DemoLink({ href, internal }: { href: string; internal?: boolean }) {
   return (
     <a

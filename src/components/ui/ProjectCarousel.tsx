@@ -24,7 +24,7 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
         {projects.map((project) => (
           <div
             key={project.name}
-            className="w-[80%] flex-none snap-start sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+            className="flex w-[80%] flex-none snap-start sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
           >
             <ProjectCard project={project} />
           </div>
