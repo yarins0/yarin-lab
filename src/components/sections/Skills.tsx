@@ -14,7 +14,7 @@ const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   },
   {
     category: "Databases",
-    tags: ["PostgreSQL", "MySQL", "Prisma ORM", "SQL", "NoSQL", "SQLite"],
+    tags: ["PostgreSQL", "MySQL", "Prisma ORM", "SQL", "NoSQL", "SQLite", "ChromaDB"],
   },
   {
     category: "DevOps & Tools",
@@ -22,11 +22,11 @@ const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   },
   {
     category: "ML & AI",
-    tags: ["PyTorch", "LangChain"],
+    tags: ["PyTorch", "LangChain", "LangGraph", "Anthropic Claude API", "OpenAI Whisper API"],
   },
   {
     category: "Operating Systems & Platforms",
-    tags: ["Vercel", "Railway", "Windows", "UNIX", "Linux", "VS Code", "PyCharm"],
+    tags: ["Vercel", "Railway", "Render", "Windows", "UNIX", "Linux", "VS Code", "PyCharm"],
   },
 ];
 // ============================================================

@@ -11,12 +11,16 @@ const PROJECTS: Project[] = [
   {
     name: "Job Screening Agent",
     description:
-      "Multi-source LangChain pipeline ingesting job postings from WhatsApp groups, Telegram channels, and web scrapers. " +
-      "A LangGraph StateGraph classifies and extracts structured fields with Claude Haiku using adaptive single/two-pass inference. " +
-      "Deduplicates via SQLite, filters against personal preferences, and delivers Telegram alerts and a daily digest. " +
-      "Includes ChromaDB semantic search and a FastAPI ingest API with an async retry queue.",
-    techStack: ["Python", "LangChain", "LangGraph", "Claude Haiku", "FastAPI", "ChromaDB", "Telegram Bot API", "SQLite", "whatsapp-web.js", "Telethon", "Node.js", "APScheduler", "LangSmith"],
+      "Personal job screening agent that monitors WhatsApp groups and Telegram channels " +
+      "for job postings using Claude Haiku via the Anthropic SDK with Pydantic-enforced structured outputs. " +
+      "Built on a LangGraph StateGraph with adaptive mode selection — groups automatically switch " +
+      "from two-call (classify → extract) to a single combined call once they exceed a 70% job-post rate. " +
+      "Delivers instant Telegram alerts with one-tap Block Role / Block City buttons, a daily digest, " +
+      "semantic similarity search via ChromaDB, and a natural-language /ask command. " +
+      "Includes a public Telegram bot for live querying — available when the agent is running.",
+    techStack: ["Anthropic Claude API", "LangGraph", "Python", "FastAPI", "Telethon", "whatsapp-web.js", "Node.js", "ChromaDB", "SQLite", "APScheduler", "BeautifulSoup", "Pydantic"],
     githubUrl: `${GITHUB_PROFILE_URL}/whatsapp-job-screener`,
+    liveDemoUrl: "https://t.me/myjobscreener_bot",
   },
   {
     name: "Backgammon AI",
