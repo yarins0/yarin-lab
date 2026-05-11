@@ -59,3 +59,12 @@ public/
 ## Tech stack
 
 Next.js 16 · React 19 · Tailwind CSS 4 · TypeScript · Vercel Analytics · Resend · Vitest
+
+## Author
+
+**Yarin Solomon** — Full Stack Developer
+
+- Email: [yarinso39@gmail.com](mailto:yarinso39@gmail.com)
+- GitHub: [github.com/yarins0](https://github.com/yarins0)
+- LinkedIn: [linkedin.com/in/yarin-solomon](https://www.linkedin.com/in/yarin-solomon/)
+- Portfolio: [yarin-lab](https://yarin-lab.vercel.app/)

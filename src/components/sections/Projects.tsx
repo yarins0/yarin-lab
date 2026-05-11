@@ -9,15 +9,14 @@ const GITHUB_PROFILE_URL = "https://github.com/yarins0";
 
 const PROJECTS: Project[] = [
   {
-    name: "TuneCraft",
+    name: "Job Screening Agent",
     description:
-      "Full-stack playlist manager for Spotify, SoundCloud, and Tidal. " +
-      "Features composable shuffle algorithms (artist spread, genre spread, chronological mix), " +
-      "automated reshuffles via a background cron job, and tools to merge, split, and deduplicate playlists. " +
-      "Enriches every track with audio features and genre tags via the ReccoBeats and Last.fm APIs.",
-    techStack: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "OAuth 2.0", "REST APIs", "JWT", "Vite", "Railway", "Vercel"],
-    githubUrl: `${GITHUB_PROFILE_URL}/TuneCraft`,
-    liveDemoUrl: "https://tune-craft-seven.vercel.app/",
+      "Multi-source LangChain pipeline ingesting job postings from WhatsApp groups, Telegram channels, and web scrapers. " +
+      "A LangGraph StateGraph classifies and extracts structured fields with Claude Haiku using adaptive single/two-pass inference. " +
+      "Deduplicates via SQLite, filters against personal preferences, and delivers Telegram alerts and a daily digest. " +
+      "Includes ChromaDB semantic search and a FastAPI ingest API with an async retry queue.",
+    techStack: ["Python", "LangChain", "LangGraph", "Claude Haiku", "FastAPI", "ChromaDB", "Telegram Bot API", "SQLite", "whatsapp-web.js", "Telethon", "Node.js", "APScheduler", "LangSmith"],
+    githubUrl: `${GITHUB_PROFILE_URL}/whatsapp-job-screener`,
   },
   {
     name: "Backgammon AI",
@@ -33,14 +32,26 @@ const PROJECTS: Project[] = [
     internalDemo: true,
   },
   {
-    name: "Job Screening Agent",
-   description:
-  "Multi-source LangChain pipeline ingesting job postings from WhatsApp groups, Telegram channels, and web scrapers. " +
-  "A LangGraph StateGraph classifies and extracts structured fields with Claude Haiku using adaptive single/two-pass inference. " +
-  "Deduplicates via SQLite, filters against personal preferences, and delivers Telegram alerts and a daily digest. " +
-  "Includes ChromaDB semantic search and a FastAPI ingest API with an async retry queue.",
-    techStack: ["Python", "LangChain", "LangGraph", "Claude Haiku", "FastAPI", "ChromaDB", "Telegram Bot API", "SQLite", "whatsapp-web.js", "Telethon", "Node.js", "APScheduler", "LangSmith"],
-    githubUrl: "https://github.com/yarins0/whatsapp-job-screener",
+    name: "Meeting Transcription System",
+    description:
+      "Upload an audio recording and receive a full transcript, structured summary, participant list, decisions, and action items. " +
+      "Uses OpenAI Whisper for transcription via a provider-swappable interface and Claude (claude-sonnet-4-6) for structured summarization over SSE. " +
+      "Handles files over 24 MB by computing an optimal FFmpeg bitrate from duration to compress audio just under the API limit before upload. " +
+      "Exports results as a formatted .docx file with RTL support for Hebrew.",
+    techStack: ["React", "TypeScript", "Vite", "FastAPI", "Python", "OpenAI Whisper API", "Anthropic Claude API", "python-docx", "FFmpeg", "Docker", "Vercel", "Render"],
+    githubUrl: `${GITHUB_PROFILE_URL}/meeting-transcription-system`,
+    liveDemoUrl: "https://meeting-transcription-system.vercel.app/",
+  },
+  {
+    name: "TuneCraft",
+    description:
+      "Full-stack playlist manager for Spotify, SoundCloud, and Tidal. " +
+      "Features composable shuffle algorithms (artist spread, genre spread, chronological mix), " +
+      "automated reshuffles via a background cron job, and tools to merge, split, and deduplicate playlists. " +
+      "Enriches every track with audio features and genre tags via the ReccoBeats and Last.fm APIs.",
+    techStack: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "OAuth 2.0", "REST APIs", "JWT", "Vite", "Railway", "Vercel"],
+    githubUrl: `${GITHUB_PROFILE_URL}/TuneCraft`,
+    liveDemoUrl: "https://tune-craft-seven.vercel.app/",
   },
   {
     name: "faceb00k.com",
