@@ -67,7 +67,12 @@ export default function RootLayout({
       <body className="min-h-full bg-white text-neutral-900">
         <Navbar />
         {children}
-        <Analytics />
+        <Analytics beforeSend={(event) => {
+          if (typeof window !== "undefined" && localStorage.getItem("va_exclude") === "true") {
+            return null;
+          }
+          return event;
+        }} />
       </body>
     </html>
   );
