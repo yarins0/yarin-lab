@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/components/layout/Navbar";
+import AnalyticsProvider from "@/components/AnalyticsProvider";
 import "./globals.css";
 
 /*
@@ -67,12 +67,7 @@ export default function RootLayout({
       <body className="min-h-full bg-white text-neutral-900">
         <Navbar />
         {children}
-        <Analytics beforeSend={(event) => {
-          if (typeof window !== "undefined" && localStorage.getItem("va_exclude") === "true") {
-            return null;
-          }
-          return event;
-        }} />
+        <AnalyticsProvider />
       </body>
     </html>
   );
