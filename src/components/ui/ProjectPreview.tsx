@@ -45,7 +45,7 @@ export default function ProjectPreview({
       {/* The overlay starts at the top of the media and grows past its bottom edge, so no text is ever clipped */}
       <span
         aria-hidden={!isDescriptionVisible}
-        className={`pointer-events-none absolute inset-x-0 top-0 z-10 min-h-full rounded-xl border border-edge bg-canvas/95 p-4 text-sm leading-relaxed text-body shadow-md transition-opacity duration-200 ${
+        className={`pointer-events-none absolute inset-x-0 top-0 z-10 min-h-full rounded-xl border border-glass-edge bg-canvas/90 p-4 text-sm leading-relaxed text-body shadow-lg backdrop-blur-xl transition-opacity duration-200 ${
           isDescriptionVisible ? "opacity-100" : "opacity-0"
         }`}
       >

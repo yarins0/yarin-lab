@@ -98,7 +98,7 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
           availableSkills.length > SKILLS_PREVIEW_COUNT ? (
             <button
               onClick={() => setShowAllSkills((current) => !current)}
-              className="rounded-full border border-edge px-4 py-1.5 text-sm font-medium text-dim transition-colors hover:border-ink hover:text-ink"
+              className="rounded-full border border-glass-edge bg-glass px-4 py-1.5 text-sm font-medium text-dim transition-colors hover:border-edge-strong hover:text-ink"
             >
               {showAllSkills ? "Show less" : `Show more (+${availableSkills.length - SKILLS_PREVIEW_COUNT})`}
             </button>
@@ -123,14 +123,14 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
         <button
           onClick={() => scroll(-1)}
           aria-label="Previous projects"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-edge text-dim transition-colors hover:border-ink hover:text-ink"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-glass-edge bg-glass text-dim transition-colors hover:border-edge-strong hover:text-ink"
         >
           <ChevronLeft />
         </button>
         <button
           onClick={() => scroll(1)}
           aria-label="Next projects"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-edge text-dim transition-colors hover:border-ink hover:text-ink"
+          className="flex h-8 w-8 items-center justify-center rounded-full border border-glass-edge bg-glass text-dim transition-colors hover:border-edge-strong hover:text-ink"
         >
           <ChevronRight />
         </button>
@@ -184,8 +184,9 @@ function FilterButton({
       onClick={onClick}
       className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
         isActive
-          ? "border-accent bg-accent text-white"
-          : "border-edge text-dim hover:border-ink hover:text-ink"
+          ? // text-canvas, not white: the accent is a light violet, so dark text on it is what reads
+            "border-accent bg-accent font-semibold text-canvas"
+          : "border-glass-edge bg-glass text-dim hover:border-edge-strong hover:text-ink"
       }`}
     >
       {label}

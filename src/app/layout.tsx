@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import AnalyticsProvider from "@/components/AnalyticsProvider";
+import GlowBackdrop from "@/components/ui/GlowBackdrop";
 import "./globals.css";
 
 /*
@@ -64,7 +65,8 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full bg-white text-neutral-900">
+      <body className="min-h-full bg-canvas text-ink">
+        <GlowBackdrop />
         <Navbar />
         {children}
         <AnalyticsProvider />

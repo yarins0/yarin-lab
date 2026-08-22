@@ -23,7 +23,12 @@ const VISIBLE_BADGE_COUNT = 5;
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-edge bg-canvas p-6 shadow-sm transition-shadow duration-200 hover:shadow-md">
+    /*
+      A glass card: translucent, so the glow behind the page shows through it.
+      On hover the border brightens and a violet glow replaces the grey drop
+      shadow that would be invisible on a dark canvas.
+    */
+    <article className="group flex h-full flex-col rounded-2xl border border-glass-edge bg-glass p-6 backdrop-blur-md transition-all duration-200 hover:border-accent-mid/40 hover:shadow-lg hover:shadow-accent-mid/10">
       <ProjectHeader name={project.name} />
       <CategoryBadges categories={project.categories} />
       {project.previewUrl ? (

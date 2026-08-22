@@ -36,7 +36,9 @@ export default function Navbar() {
   const activeSection = useActiveSection();
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-divider bg-canvas/90 backdrop-blur-sm">
+    // A heavier blur and a lower opacity than the light theme used, so the glow
+    // behind the page stays visible through the bar instead of being flattened.
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-glass-edge bg-canvas/60 backdrop-blur-xl">
       <nav className="mx-auto flex h-16 max-w-4xl items-center justify-between px-6">
         <SiteName />
         <DesktopLinks activeSection={activeSection} />
@@ -163,7 +165,7 @@ function CvButton() {
     <a
       href="/cv.pdf"
       download
-      className="rounded-full border border-edge-mid bg-canvas px-4 py-1.5 text-xs font-semibold text-dim transition-all hover:border-edge-strong hover:shadow-sm"
+      className="rounded-full border border-glass-edge bg-glass px-4 py-1.5 text-xs font-semibold text-dim transition-all hover:border-edge-strong hover:text-ink"
     >
       Download CV
     </a>

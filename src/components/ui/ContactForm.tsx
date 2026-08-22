@@ -155,7 +155,7 @@ function FormField({
   onChange?: () => void;
 }) {
   const sharedClass =
-    "mt-1 block w-full rounded-xl border border-edge bg-canvas px-4 py-3 text-sm text-ink placeholder:text-faint focus:border-accent-mid focus:outline-none focus:ring-2 focus:ring-accent-light disabled:opacity-50";
+    "mt-1 block w-full rounded-xl border border-glass-edge bg-glass px-4 py-3 text-sm text-ink backdrop-blur-sm placeholder:text-faint focus:border-accent-mid focus:outline-none focus:ring-2 focus:ring-accent-light disabled:opacity-50";
 
   return (
     <div className="mb-4">
@@ -213,7 +213,7 @@ function SubmitButton({ status }: { status: Status }) {
     <button
       type="submit"
       disabled={status === "submitting" || status === "success"}
-      className="w-full rounded-full bg-ink py-3.5 text-sm font-semibold text-canvas shadow-sm transition-all duration-150 hover:bg-ink-soft hover:shadow-md disabled:cursor-not-allowed disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2"
+      className="bg-gradient-accent w-full rounded-full py-3.5 text-sm font-semibold text-canvas shadow-lg shadow-accent-mid/25 transition-all duration-150 hover:shadow-xl hover:shadow-accent-mid/40 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
     >
       {labels[status]}
     </button>

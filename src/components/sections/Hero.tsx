@@ -43,7 +43,7 @@ export default function Hero() {
 /* The "Open to work" indicator pill */
 function OpenToWorkBadge() {
   return (
-    <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-open-ring bg-open-bg px-4 py-1.5 text-sm font-medium text-open-text">
+    <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-open-ring bg-open-bg px-4 py-1.5 text-sm font-medium text-open-text backdrop-blur-sm">
       {/* Pulsing dot — signals availability at a glance */}
       <span className="relative flex h-2 w-2">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-open-glow opacity-75" />
@@ -54,11 +54,15 @@ function OpenToWorkBadge() {
   );
 }
 
-/* Primary heading */
+/*
+  Primary heading. Only the name carries the accent gradient — the greeting
+  stays plain. pb-2 gives the gradient text room for its descenders, which
+  background-clip would otherwise cut off.
+*/
 function Name({ name }: { name: string }) {
   return (
-    <h1 className="mb-3 text-5xl font-bold tracking-tight text-ink sm:text-6xl">
-      Hi, I&apos;m {name}
+    <h1 className="mb-3 pb-2 text-5xl font-bold leading-[1.1] tracking-tight text-ink sm:text-6xl">
+      Hi, I&apos;m <span className="text-gradient">{name}</span>
     </h1>
   );
 }
@@ -66,7 +70,7 @@ function Name({ name }: { name: string }) {
 /* One-line role descriptor */
 function Headline({ headline }: { headline: string }) {
   return (
-    <p className="mb-6 text-xl font-medium text-accent sm:text-2xl">
+    <p className="mb-6 font-mono text-base font-medium tracking-wide text-body sm:text-lg">
       {headline}
     </p>
   );
@@ -97,16 +101,23 @@ function CtaButtons({
 }) {
   return (
     <div className="flex flex-wrap items-center justify-center gap-4">
+      {/*
+        Primary CTA. The gradient fill is the brightest element on the page,
+        so it reads as the single primary action. The violet shadow ties the
+        button to the glow behind it instead of casting a grey drop shadow,
+        which never looks right on a dark canvas.
+      */}
       <a
         href={ctaHref}
-        className="rounded-full bg-ink px-8 py-3.5 text-sm font-semibold text-canvas shadow-sm transition-all duration-150 hover:bg-ink-soft hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-ink focus-visible:ring-offset-2"
+        className="bg-gradient-accent rounded-full px-8 py-3.5 text-sm font-semibold text-canvas shadow-lg shadow-accent-mid/25 transition-all duration-150 hover:shadow-xl hover:shadow-accent-mid/40 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
       >
         {ctaLabel}
       </a>
+      {/* Secondary CTA: glass, so the glow shows through it */}
       <a
         href={cvPath}
         download
-        className="rounded-full border border-edge-mid bg-canvas px-8 py-3.5 text-sm font-semibold text-dim shadow-sm transition-all duration-150 hover:border-edge-strong hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-edge-mid focus-visible:ring-offset-2"
+        className="rounded-full border border-glass-edge bg-glass px-8 py-3.5 text-sm font-semibold text-dim backdrop-blur-sm transition-all duration-150 hover:border-edge-strong hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-edge-strong focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
       >
         Download CV
       </a>
