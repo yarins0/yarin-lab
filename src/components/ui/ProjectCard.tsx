@@ -9,7 +9,8 @@ export type Project = {
   description: string;
   categories: Category[];
   techStack: string[];
-  githubUrl: string;
+  // Omitted for projects whose repos are private — the card then shows only the demo link
+  githubUrl?: string;
   liveDemoUrl?: string;
   internalDemo?: boolean;
 };
@@ -113,20 +114,22 @@ function ProjectLinks({
   liveDemoUrl,
   internalDemo,
 }: {
-  githubUrl: string;
+  githubUrl?: string;
   liveDemoUrl?: string;
   internalDemo?: boolean;
 }) {
   return (
     <div className="mt-auto flex items-center gap-4 text-sm font-medium">
-      <a
-        href={githubUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-dim underline-offset-2 transition-colors hover:text-ink hover:underline"
-      >
-        GitHub →
-      </a>
+      {githubUrl && (
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-dim underline-offset-2 transition-colors hover:text-ink hover:underline"
+        >
+          GitHub →
+        </a>
+      )}
       {liveDemoUrl && <DemoLink href={liveDemoUrl} internal={internalDemo} />}
     </div>
   );

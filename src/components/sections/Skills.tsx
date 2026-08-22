@@ -6,27 +6,27 @@ import Badge from "@/components/ui/Badge";
 const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   {
     category: "Languages",
-    tags: ["Python", "Java", "C", "C++", "JavaScript", "TypeScript", "Assembly"],
+    tags: ["Python", "Java", "Kotlin", "C", "C#", "C++", "JavaScript", "TypeScript", "Assembly"],
   },
   {
     category: "Web / Full-Stack",
-    tags: ["React", "Next.js", "Node.js", "Express", "Vite", "HTML", "CSS", "Tailwind CSS", "REST APIs", "OAuth 2.0", "JWT",  "FastAPI"],
+    tags: ["React", "React Native", "Expo", "Next.js", "Node.js", "Express", "Fastify", "Vite", "HTML", "CSS", "Tailwind CSS", "REST APIs", "OAuth 2.0", "JWT",  "FastAPI", "WebRTC", "Twilio"],
   },
   {
     category: "Databases",
-    tags: ["PostgreSQL", "MySQL", "Prisma ORM", "SQL", "NoSQL", "SQLite", "ChromaDB"],
+    tags: ["PostgreSQL", "Supabase", "MySQL", "MongoDB", "Prisma ORM", "SQL", "NoSQL", "SQLite", "ChromaDB"],
   },
   {
     category: "DevOps & Tools",
-    tags: ["AWS", "Terraform (IaC)", "Docker", "Kubernetes", "Git", "GitHub", "CI/CD", "Linux Servers & VMs", "Networks", "Claude Code", "Cursor"],
+    tags: ["AWS", "AWS EKS", "Terraform (IaC)", "Docker", "Kubernetes", "Helm", "Prometheus", "Grafana", "Git", "GitHub", "GitHub Actions", "CI/CD", "Linux Servers & VMs", "Networks", "Claude Code", "Cursor"],
   },
   {
     category: "ML & AI",
-    tags: ["PyTorch", "LangChain", "LangGraph", "Anthropic Claude API", "OpenAI Whisper API"],
+    tags: ["PyTorch", "LangChain", "LangGraph", "Anthropic Claude API", "OpenAI Realtime API", "OpenAI Whisper API"],
   },
   {
     category: "Operating Systems & Platforms",
-    tags: ["Windows", "UNIX", "Linux", "VS Code", "PyCharm"],
+    tags: ["Windows", "UNIX", "Linux", "Unity 6", "VS Code", "PyCharm"],
   },
 ];
 // ============================================================

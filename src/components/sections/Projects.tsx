@@ -9,6 +9,20 @@ const GITHUB_PROFILE_URL = "https://github.com/yarins0";
 
 const PROJECTS: Project[] = [
   {
+    name: "AI Conductor",
+    categories: ["AI Engineering", "Fullstack"],
+    description:
+      "A two-agent system for building and running voice AI assistants. " +
+      "A Builder turns a natural-language description into a structured Assistant Spec via Claude structured outputs, " +
+      "then edits that spec through a bounded tool-calling loop with self-correction and a whole-spec regeneration fallback. " +
+      "The spec then runs live: the operator talks to the assistant over OpenAI Realtime via WebRTC, " +
+      "and its reach tool can place a real phone call bridged server-side to a second Realtime session over Twilio Media Streams — " +
+      "both sides speak G.711 mu-law, so the bridge is a byte-for-byte relay. " +
+      "Tools (reach, qualify, book) are invoked non-linearly, and every outcome lands in a shared SQLite context store.",
+    techStack: ["OpenAI Realtime API", "Anthropic Claude API", "WebRTC", "Twilio Media Streams", "Python", "FastAPI", "Pydantic", "SQLite", "Server-Sent Events", "Google Calendar API"],
+    githubUrl: `${GITHUB_PROFILE_URL}/ai-conductor`,
+  },
+  {
     name: "Job Screening Agent",
     categories: ["AI Engineering", "Backend"],
     description:
@@ -22,6 +36,21 @@ const PROJECTS: Project[] = [
     techStack: ["Anthropic Claude API", "LangGraph", "Python", "FastAPI", "Telethon", "whatsapp-web.js", "Node.js", "ChromaDB", "SQLite", "APScheduler", "BeautifulSoup", "Pydantic"],
     githubUrl: `${GITHUB_PROFILE_URL}/whatsapp-job-screener`,
     liveDemoUrl: "https://t.me/myjobscreener_bot",
+  },
+  {
+    name: "Reign & Gain",
+    categories: ["Backend", "Fullstack"],
+    description:
+      "A mobile fitness RPG where verified real-world workouts drive turn-based roguelite progression — " +
+      "XP, stats, gold, and loot. The Unity 6 client is built entirely in C# at runtime: no prefabs, one near-empty " +
+      "bootstrap scene, and procedurally generated UI textures instead of art assets. " +
+      "Combat rules live in a pure synchronous engine with no Unity types in the maths, driven by seeded RNG " +
+      "so any run reproduces from its seed, and covered by an EditMode suite plus an autopilot that walks a full run unattended. " +
+      "Behind it, the client is untrusted: a Kotlin host reads Health Connect on-device and uploads raw signals — never a verdict — " +
+      "and a Fastify server re-scores them through composable signal checkers before awarding anything. " +
+      "Reward formulas live in Postgres, tunable without a redeploy, with row-level security keeping every authoritative table server-write-only.",
+    techStack: ["Unity 6", "C#", "Fastify", "Node.js", "TypeScript", "Kotlin", "PostgreSQL", "Supabase", "Zod", "Row-Level Security", "REST APIs", "Testcontainers"],
+    liveDemoUrl: "https://getsweatygames.com/reignandgain",
   },
   {
     name: "Backgammon AI",
@@ -48,6 +77,30 @@ const PROJECTS: Project[] = [
     techStack: ["React", "TypeScript", "Vite", "FastAPI", "Python", "OpenAI Whisper API", "Anthropic Claude API", "python-docx", "FFmpeg", "Docker"],
     githubUrl: `${GITHUB_PROFILE_URL}/meeting-transcription-system`,
     liveDemoUrl: "https://meeting-transcription-system.vercel.app/",
+  },
+  {
+    name: "Name Generator on AWS EKS",
+    categories: ["DevOps"],
+    description:
+      "A small Express and MongoDB app used as the vehicle for a full production deployment to AWS EKS in Auto Mode. " +
+      "Terraform provisions the VPC, the cluster, the ECR repository, and an OIDC-federated IAM role, " +
+      "so GitHub Actions builds and rolls out images without any long-lived AWS keys. " +
+      "MongoDB runs as a StatefulSet on an EBS-backed volume, kube-prometheus-stack supplies Prometheus and a custom Grafana dashboard, " +
+      "and a scripted teardown destroys everything in dependency order so no orphaned volume keeps billing.",
+    techStack: ["Terraform", "AWS EKS", "Kubernetes", "Docker", "GitHub Actions", "Helm", "Prometheus", "Grafana", "Amazon ECR", "Node.js", "Express", "MongoDB"],
+    githubUrl: `${GITHUB_PROFILE_URL}/random-name-gen-app`,
+  },
+  {
+    name: "MusicSwipe",
+    categories: ["Fullstack"],
+    description:
+      "Swipe through a Spotify playlist Tinder-style while each track plays live; liked tracks land in one or more destination playlists. " +
+      "Built in React Native (Expo) behind a platform adapter boundary — every Spotify call sits inside one adapter, " +
+      "and the UI reads capability flags instead of checking which platform it is on. " +
+      "Swipes write to local Zustand state first and sync fire-and-forget to an Express and Supabase backend, " +
+      "while playlist writes are queued and retried with exponential backoff so they never block the swipe UI.",
+    techStack: ["React Native", "Expo", "TypeScript", "Supabase", "PostgreSQL", "Express", "Node.js", "Zustand", "OAuth 2.0 PKCE", "Spotify Web API", "Jest"],
+    githubUrl: `${GITHUB_PROFILE_URL}/music-swipe`,
   },
   {
     name: "TuneCraft",
