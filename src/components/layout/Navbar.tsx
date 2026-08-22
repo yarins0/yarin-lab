@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 /*
   The navigation links and the section IDs they point to.
@@ -49,12 +50,12 @@ export default function Navbar() {
 /* Left side: site owner name */
 function SiteName() {
   return (
-    <a
+    <Link
       href="/#about"
       className="text-sm font-semibold text-ink transition-colors hover:text-accent"
     >
       Yarin Solomon
-    </a>
+    </Link>
   );
 }
 

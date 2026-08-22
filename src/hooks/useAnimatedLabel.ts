@@ -12,11 +12,8 @@ export function useAnimatedLabel(isLoading: boolean, baseText: string): string {
   const [dotCount, setDotCount] = useState(1);
 
   useEffect(() => {
-    // Nothing to animate when not loading — reset dots for next time
-    if (!isLoading) {
-      setDotCount(1);
-      return;
-    }
+    // Nothing to animate when not loading
+    if (!isLoading) return;
 
     // Advance the dot count on a fixed interval, wrapping 3 → 1
     const interval = setInterval(() => {
@@ -24,9 +21,12 @@ export function useAnimatedLabel(isLoading: boolean, baseText: string): string {
     }, 400);
 
     // Cleanup: clear the interval when isLoading turns false
-    // or when the component using this hook unmounts.
-    // Without this, the interval would keep firing after it's no longer needed.
-    return () => clearInterval(interval);
+    // or when the component using this hook unmounts, and reset the
+    // count so the next loading run starts back at one dot.
+    return () => {
+      clearInterval(interval);
+      setDotCount(1);
+    };
   }, [isLoading]);
 
   if (!isLoading) return baseText;
