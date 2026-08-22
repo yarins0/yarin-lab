@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, type ReactNode } from "react";
 import ProjectCard, { type Category, type Project } from "@/components/ui/ProjectCard";
 
 interface ProjectCarouselProps {
@@ -12,28 +12,51 @@ function toggleValue<T>(selected: T[], value: T): T[] {
     : [...selected, value];
 }
 
+const SKILLS_PREVIEW_COUNT = 15;
+
 export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
+  const [showAllSkills, setShowAllSkills] = useState(false);
 
   const availableCategories = useMemo(
     () => Array.from(new Set(projects.flatMap((project) => project.categories))),
     [projects],
   );
-  const availableSkills = useMemo(
-    () => Array.from(new Set(projects.flatMap((project) => project.techStack))).sort(),
-    [projects],
+  // Skill options narrow to the selected categories, one-directional: category filters skills, not the reverse.
+  const categoryFilteredProjects = useMemo(
+    () =>
+      projects.filter(
+        (project) =>
+          selectedCategories.length === 0 ||
+          project.categories.some((category) => selectedCategories.includes(category)),
+      ),
+    [projects, selectedCategories],
   );
-  const visibleProjects = projects.filter((project) => {
-    const matchesCategory =
-      selectedCategories.length === 0 ||
-      project.categories.some((category) => selectedCategories.includes(category));
+  // Relevance = how many of the currently visible projects use the skill; most-used first.
+  const availableSkills = useMemo(() => {
+    const skillCounts = new Map<string, number>();
+    categoryFilteredProjects.forEach((project) =>
+      project.techStack.forEach((skill) => skillCounts.set(skill, (skillCounts.get(skill) ?? 0) + 1)),
+    );
+    return Array.from(skillCounts.keys()).sort(
+      (a, b) => skillCounts.get(b)! - skillCounts.get(a)! || a.localeCompare(b),
+    );
+  }, [categoryFilteredProjects]);
+  const visibleSkillOptions = showAllSkills ? availableSkills : availableSkills.slice(0, SKILLS_PREVIEW_COUNT);
+  // Drops selections that fell out of range when the category filter narrowed the skill options.
+  const activeSkills = useMemo(
+    () => selectedSkills.filter((skill) => availableSkills.includes(skill)),
+    [selectedSkills, availableSkills],
+  );
+  const visibleProjects = categoryFilteredProjects.filter((project) => {
     const matchesSkill =
-      selectedSkills.length === 0 ||
-      project.techStack.some((skill) => selectedSkills.includes(skill));
-    return matchesCategory && matchesSkill;
+      activeSkills.length === 0 || project.techStack.some((skill) => activeSkills.includes(skill));
+    return matchesSkill;
   });
+
+  const hasActiveFilters = selectedCategories.length > 0 || selectedSkills.length > 0;
 
   function scroll(direction: 1 | -1) {
     const container = scrollRef.current;
@@ -41,21 +64,46 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
     container.scrollBy({ left: direction * container.offsetWidth, behavior: "smooth" });
   }
 
+  function clearFilters() {
+    setSelectedCategories([]);
+    setSelectedSkills([]);
+  }
+
   return (
     <div>
+      <div className="mb-3 flex items-center justify-between gap-3">
+        <FilterBar
+          options={availableCategories}
+          selected={selectedCategories}
+          onToggle={(category) => setSelectedCategories((current) => toggleValue(current, category))}
+          onClear={() => setSelectedCategories([])}
+          className=""
+        />
+        {hasActiveFilters && (
+          <button
+            onClick={clearFilters}
+            className="shrink-0 text-sm font-medium text-dim underline-offset-2 transition-colors hover:text-ink hover:underline"
+          >
+            Clear filters
+          </button>
+        )}
+      </div>
       <FilterBar
-        options={availableCategories}
-        selected={selectedCategories}
-        onToggle={(category) => setSelectedCategories((current) => toggleValue(current, category))}
-        onClear={() => setSelectedCategories([])}
-        className="mb-3"
-      />
-      <FilterBar
-        options={availableSkills}
-        selected={selectedSkills}
+        options={visibleSkillOptions}
+        selected={activeSkills}
         onToggle={(skill) => setSelectedSkills((current) => toggleValue(current, skill))}
         onClear={() => setSelectedSkills([])}
         className="mb-6"
+        trailing={
+          availableSkills.length > SKILLS_PREVIEW_COUNT ? (
+            <button
+              onClick={() => setShowAllSkills((current) => !current)}
+              className="rounded-full border border-edge px-4 py-1.5 text-sm font-medium text-dim transition-colors hover:border-ink hover:text-ink"
+            >
+              {showAllSkills ? "Show less" : `Show more (+${availableSkills.length - SKILLS_PREVIEW_COUNT})`}
+            </button>
+          ) : null
+        }
       />
       <div
         ref={scrollRef}
@@ -97,12 +145,14 @@ function FilterBar<T extends string>({
   onToggle,
   onClear,
   className,
+  trailing,
 }: {
   options: T[];
   selected: T[];
   onToggle: (option: T) => void;
   onClear: () => void;
   className: string;
+  trailing?: ReactNode;
 }) {
   return (
     <div className={`flex flex-wrap gap-2 ${className}`}>
@@ -115,6 +165,7 @@ function FilterBar<T extends string>({
           label={option}
         />
       ))}
+      {trailing}
     </div>
   );
 }

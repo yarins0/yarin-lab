@@ -45,7 +45,7 @@ const PROJECTS: Project[] = [
       "Uses OpenAI Whisper for transcription via a provider-swappable interface and Claude (claude-sonnet-4-6) for structured summarization over SSE. " +
       "Handles files over 24 MB by computing an optimal FFmpeg bitrate from duration to compress audio just under the API limit before upload. " +
       "Exports results as a formatted .docx file with RTL support for Hebrew.",
-    techStack: ["React", "TypeScript", "Vite", "FastAPI", "Python", "OpenAI Whisper API", "Anthropic Claude API", "python-docx", "FFmpeg", "Docker", "Vercel", "Render"],
+    techStack: ["React", "TypeScript", "Vite", "FastAPI", "Python", "OpenAI Whisper API", "Anthropic Claude API", "python-docx", "FFmpeg", "Docker"],
     githubUrl: `${GITHUB_PROFILE_URL}/meeting-transcription-system`,
     liveDemoUrl: "https://meeting-transcription-system.vercel.app/",
   },
@@ -57,7 +57,7 @@ const PROJECTS: Project[] = [
       "Features composable shuffle algorithms (artist spread, genre spread, chronological mix), " +
       "automated reshuffles via a background cron job, and tools to merge, split, and deduplicate playlists. " +
       "Enriches every track with audio features and genre tags via the ReccoBeats and Last.fm APIs.",
-    techStack: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "OAuth 2.0", "REST APIs", "JWT", "Vite", "Railway", "Vercel"],
+    techStack: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "OAuth 2.0", "REST APIs", "JWT", "Vite"],
     githubUrl: `${GITHUB_PROFILE_URL}/TuneCraft`,
     liveDemoUrl: "https://tune-craft-seven.vercel.app/",
   },
