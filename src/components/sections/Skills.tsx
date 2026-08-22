@@ -18,7 +18,7 @@ const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   },
   {
     category: "DevOps & Tools",
-    tags: ["Git", "GitHub", "Docker", "Claude Code", "Cursor"],
+    tags: ["AWS", "Terraform (IaC)", "Docker", "Kubernetes", "Git", "GitHub", "CI/CD", "Linux Servers & VMs", "Networks", "Claude Code", "Cursor"],
   },
   {
     category: "ML & AI",
@@ -26,7 +26,7 @@ const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   },
   {
     category: "Operating Systems & Platforms",
-    tags: ["Vercel", "Railway", "Render", "Windows", "UNIX", "Linux", "VS Code", "PyCharm"],
+    tags: ["Windows", "UNIX", "Linux", "VS Code", "PyCharm"],
   },
 ];
 // ============================================================
