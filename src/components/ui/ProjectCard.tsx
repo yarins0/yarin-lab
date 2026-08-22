@@ -2,9 +2,12 @@
 import { useState } from "react";
 import Badge from "./Badge";
 
+export type Category = "Fullstack" | "AI Engineering" | "Backend" | "DevOps";
+
 export type Project = {
   name: string;
   description: string;
+  categories: Category[];
   techStack: string[];
   githubUrl: string;
   liveDemoUrl?: string;
@@ -18,6 +21,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="group flex h-full flex-col rounded-2xl border border-edge bg-canvas p-6 shadow-sm transition-shadow duration-200 hover:shadow-md">
       <ProjectHeader name={project.name} />
+      <CategoryBadges categories={project.categories} />
       <ProjectDescription description={project.description} />
       <TechStack tags={project.techStack} />
       <ProjectLinks
@@ -34,6 +38,21 @@ function ProjectHeader({ name }: { name: string }) {
     <h3 className="mb-2 text-lg font-semibold text-ink transition-colors duration-150 group-hover:text-accent">
       {name}
     </h3>
+  );
+}
+
+function CategoryBadges({ categories }: { categories: Category[] }) {
+  return (
+    <div className="mb-3 flex flex-wrap gap-2">
+      {categories.map((category) => (
+        <span
+          key={category}
+          className="inline-flex items-center rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+        >
+          {category}
+        </span>
+      ))}
+    </div>
   );
 }
 

@@ -1,13 +1,25 @@
 "use client";
-import { useRef } from "react";
-import ProjectCard, { type Project } from "@/components/ui/ProjectCard";
+import { useMemo, useRef, useState } from "react";
+import ProjectCard, { type Category, type Project } from "@/components/ui/ProjectCard";
 
 interface ProjectCarouselProps {
   projects: Project[];
 }
 
+type CategoryFilter = Category | "All";
+
 export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [activeFilter, setActiveFilter] = useState<CategoryFilter>("All");
+
+  const availableCategories = useMemo(
+    () => Array.from(new Set(projects.flatMap((project) => project.categories))),
+    [projects],
+  );
+  const visibleProjects =
+    activeFilter === "All"
+      ? projects
+      : projects.filter((project) => project.categories.includes(activeFilter));
 
   function scroll(direction: 1 | -1) {
     const container = scrollRef.current;
@@ -17,11 +29,16 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
   return (
     <div>
+      <CategoryFilterBar
+        categories={availableCategories}
+        activeFilter={activeFilter}
+        onSelect={setActiveFilter}
+      />
       <div
         ref={scrollRef}
         className="scrollbar-hide flex w-full snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2"
       >
-        {projects.map((project) => (
+        {visibleProjects.map((project) => (
           <div
             key={project.name}
             className="flex w-[80%] flex-none snap-start sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
@@ -47,6 +64,36 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
           <ChevronRight />
         </button>
       </div>
+    </div>
+  );
+}
+
+function CategoryFilterBar({
+  categories,
+  activeFilter,
+  onSelect,
+}: {
+  categories: Category[];
+  activeFilter: CategoryFilter;
+  onSelect: (filter: CategoryFilter) => void;
+}) {
+  const filters: CategoryFilter[] = ["All", ...categories];
+
+  return (
+    <div className="mb-6 flex flex-wrap gap-2">
+      {filters.map((filter) => (
+        <button
+          key={filter}
+          onClick={() => onSelect(filter)}
+          className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
+            activeFilter === filter
+              ? "border-accent bg-accent text-white"
+              : "border-edge text-dim hover:border-ink hover:text-ink"
+          }`}
+        >
+          {filter}
+        </button>
+      ))}
     </div>
   );
 }

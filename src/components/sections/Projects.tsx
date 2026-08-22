@@ -10,6 +10,7 @@ const GITHUB_PROFILE_URL = "https://github.com/yarins0";
 const PROJECTS: Project[] = [
   {
     name: "Job Screening Agent",
+    categories: ["AI Engineering", "Backend"],
     description:
       "Personal job screening agent that monitors WhatsApp groups and Telegram channels " +
       "for job postings using Claude Haiku via the Anthropic SDK with Pydantic-enforced structured outputs. " +
@@ -24,6 +25,7 @@ const PROJECTS: Project[] = [
   },
   {
     name: "Backgammon AI",
+    categories: ["Backend"],
     description:
       "Full Backgammon engine with five AI opponents of increasing sophistication: random, " +
       "heuristic (six-feature weighted evaluation), depth-limited minimax, MCTS with UCB1, " +
@@ -37,6 +39,7 @@ const PROJECTS: Project[] = [
   },
   {
     name: "Meeting Transcription System",
+    categories: ["AI Engineering", "Fullstack"],
     description:
       "Upload an audio recording and receive a full transcript, structured summary, participant list, decisions, and action items. " +
       "Uses OpenAI Whisper for transcription via a provider-swappable interface and Claude (claude-sonnet-4-6) for structured summarization over SSE. " +
@@ -48,6 +51,7 @@ const PROJECTS: Project[] = [
   },
   {
     name: "TuneCraft",
+    categories: ["Fullstack"],
     description:
       "Full-stack playlist manager for Spotify, SoundCloud, and Tidal. " +
       "Features composable shuffle algorithms (artist spread, genre spread, chronological mix), " +
@@ -59,6 +63,7 @@ const PROJECTS: Project[] = [
   },
   {
     name: "faceb00k.com",
+    categories: ["Backend"],
     description:
       "A BGU university security assignment replicating Facebook's login and registration UI. " +
       "Demonstrates credential harvesting techniques, SQL injection prevention via parameterised queries, " +
