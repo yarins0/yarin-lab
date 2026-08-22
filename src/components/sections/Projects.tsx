@@ -65,6 +65,7 @@ const PROJECTS: Project[] = [
     githubUrl: `${GITHUB_PROFILE_URL}/Backgammon_Mini`,
     liveDemoUrl: "/backgammon/",
     internalDemo: true,
+    previewUrl: "/backgammon/backgammon_demo.gif",
   },
   {
     name: "Meeting Transcription System",

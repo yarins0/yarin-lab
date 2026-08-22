@@ -54,6 +54,11 @@ next-env.d.ts
 
 # Claude Code / claude-flow config
 .mcp.json
+
+# Agent skills installed by `npx skills` — tooling, not project source
+.agents/
+/skills/
+skills-lock.json
 CLAUDE.md
 AGENTS.md
 

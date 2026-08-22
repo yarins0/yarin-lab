@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Badge from "./Badge";
+import ProjectPreview from "./ProjectPreview";
 
 export type Category = "Fullstack" | "AI Engineering" | "Backend" | "DevOps";
 
@@ -13,6 +14,8 @@ export type Project = {
   githubUrl?: string;
   liveDemoUrl?: string;
   internalDemo?: boolean;
+  // Picture, GIF, or video shown in the place of the description. Without it the card shows the text.
+  previewUrl?: string;
 };
 
 const DESCRIPTION_EXPAND_THRESHOLD = 220;
@@ -23,7 +26,15 @@ export default function ProjectCard({ project }: { project: Project }) {
     <article className="group flex h-full flex-col rounded-2xl border border-edge bg-canvas p-6 shadow-sm transition-shadow duration-200 hover:shadow-md">
       <ProjectHeader name={project.name} />
       <CategoryBadges categories={project.categories} />
-      <ProjectDescription description={project.description} />
+      {project.previewUrl ? (
+        <ProjectPreview
+          previewUrl={project.previewUrl}
+          description={project.description}
+          projectName={project.name}
+        />
+      ) : (
+        <ProjectDescription description={project.description} />
+      )}
       <TechStack tags={project.techStack} />
       <ProjectLinks
         githubUrl={project.githubUrl}
