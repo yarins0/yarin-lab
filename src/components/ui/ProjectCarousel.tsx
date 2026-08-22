@@ -6,20 +6,34 @@ interface ProjectCarouselProps {
   projects: Project[];
 }
 
-type CategoryFilter = Category | "All";
+function toggleValue<T>(selected: T[], value: T): T[] {
+  return selected.includes(value)
+    ? selected.filter((selectedValue) => selectedValue !== value)
+    : [...selected, value];
+}
 
 export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [activeFilter, setActiveFilter] = useState<CategoryFilter>("All");
+  const [selectedCategories, setSelectedCategories] = useState<Category[]>([]);
+  const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
 
   const availableCategories = useMemo(
     () => Array.from(new Set(projects.flatMap((project) => project.categories))),
     [projects],
   );
-  const visibleProjects =
-    activeFilter === "All"
-      ? projects
-      : projects.filter((project) => project.categories.includes(activeFilter));
+  const availableSkills = useMemo(
+    () => Array.from(new Set(projects.flatMap((project) => project.techStack))).sort(),
+    [projects],
+  );
+  const visibleProjects = projects.filter((project) => {
+    const matchesCategory =
+      selectedCategories.length === 0 ||
+      project.categories.some((category) => selectedCategories.includes(category));
+    const matchesSkill =
+      selectedSkills.length === 0 ||
+      project.techStack.some((skill) => selectedSkills.includes(skill));
+    return matchesCategory && matchesSkill;
+  });
 
   function scroll(direction: 1 | -1) {
     const container = scrollRef.current;
@@ -29,10 +43,19 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
 
   return (
     <div>
-      <CategoryFilterBar
-        categories={availableCategories}
-        activeFilter={activeFilter}
-        onSelect={setActiveFilter}
+      <FilterBar
+        options={availableCategories}
+        selected={selectedCategories}
+        onToggle={(category) => setSelectedCategories((current) => toggleValue(current, category))}
+        onClear={() => setSelectedCategories([])}
+        className="mb-3"
+      />
+      <FilterBar
+        options={availableSkills}
+        selected={selectedSkills}
+        onToggle={(skill) => setSelectedSkills((current) => toggleValue(current, skill))}
+        onClear={() => setSelectedSkills([])}
+        className="mb-6"
       />
       <div
         ref={scrollRef}
@@ -68,33 +91,54 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
   );
 }
 
-function CategoryFilterBar({
-  categories,
-  activeFilter,
-  onSelect,
+function FilterBar<T extends string>({
+  options,
+  selected,
+  onToggle,
+  onClear,
+  className,
 }: {
-  categories: Category[];
-  activeFilter: CategoryFilter;
-  onSelect: (filter: CategoryFilter) => void;
+  options: T[];
+  selected: T[];
+  onToggle: (option: T) => void;
+  onClear: () => void;
+  className: string;
 }) {
-  const filters: CategoryFilter[] = ["All", ...categories];
-
   return (
-    <div className="mb-6 flex flex-wrap gap-2">
-      {filters.map((filter) => (
-        <button
-          key={filter}
-          onClick={() => onSelect(filter)}
-          className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
-            activeFilter === filter
-              ? "border-accent bg-accent text-white"
-              : "border-edge text-dim hover:border-ink hover:text-ink"
-          }`}
-        >
-          {filter}
-        </button>
+    <div className={`flex flex-wrap gap-2 ${className}`}>
+      <FilterButton isActive={selected.length === 0} onClick={onClear} label="All" />
+      {options.map((option) => (
+        <FilterButton
+          key={option}
+          isActive={selected.includes(option)}
+          onClick={() => onToggle(option)}
+          label={option}
+        />
       ))}
     </div>
+  );
+}
+
+function FilterButton({
+  isActive,
+  onClick,
+  label,
+}: {
+  isActive: boolean;
+  onClick: () => void;
+  label: string;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
+        isActive
+          ? "border-accent bg-accent text-white"
+          : "border-edge text-dim hover:border-ink hover:text-ink"
+      }`}
+    >
+      {label}
+    </button>
   );
 }
 
