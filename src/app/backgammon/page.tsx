@@ -39,7 +39,7 @@ const TECH = ["Python", "PyTorch", "Tkinter", "Docker"];
 
 export default function BackgammonPage() {
   return (
-    <main className="mx-auto max-w-3xl px-6 pb-24 pt-8">
+    <main id="main" className="mx-auto max-w-3xl px-6 pb-24 pt-8">
 
       <BackLink />
       <Hero />

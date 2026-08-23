@@ -140,7 +140,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="mx-auto max-w-4xl scroll-mt-20 px-6 py-24"
+      className="mx-auto max-w-4xl scroll-mt-20 px-6 py-14"
     >
       <SectionHeader githubUrl={GITHUB_PROFILE_URL} />
       <ProjectCarousel projects={PROJECTS} />
@@ -156,12 +156,12 @@ function SectionHeader({ githubUrl }: { githubUrl: string }) {
         Projects
       </h2>
       <p className="text-base text-body">
-        A selection of things I&apos;ve built. More on{" "}
+        A selection of things I&rsquo;ve built. More on{" "}
         <a
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="font-medium text-accent hover:underline"
+          className="focus-ring rounded-sm font-medium text-accent hover:underline"
         >
           GitHub
         </a>

@@ -54,7 +54,7 @@ function SiteName() {
   return (
     <Link
       href="/#about"
-      className="text-sm font-semibold text-ink transition-colors hover:text-accent"
+      className="focus-ring rounded-sm text-sm font-semibold text-ink transition-colors hover:text-accent"
     >
       Yarin Solomon
     </Link>
@@ -88,7 +88,7 @@ function MobileControls({
 }) {
   return (
     <button
-      className="flex items-center justify-center rounded-md p-2 text-dim transition-colors hover:text-ink sm:hidden"
+      className="focus-ring flex items-center justify-center rounded-md p-2 text-dim transition-colors hover:text-ink sm:hidden"
       onClick={onToggle}
       aria-label={isOpen ? "Close menu" : "Open menu"}
       aria-expanded={isOpen}
@@ -148,7 +148,7 @@ function NavLink({
     <a
       href={href}
       onClick={onClick}
-      className={`text-sm transition-colors ${
+      className={`focus-ring rounded-sm text-sm transition-colors ${
         isActive
           ? "font-semibold text-accent"
           : "font-medium text-body hover:text-ink"
@@ -165,7 +165,7 @@ function CvButton() {
     <a
       href="/cv.pdf"
       download
-      className="rounded-full border border-glass-edge bg-glass px-4 py-1.5 text-xs font-semibold text-dim transition-all hover:border-edge-strong hover:text-ink"
+      className="focus-ring rounded-full border border-glass-edge bg-glass px-4 py-1.5 text-xs font-semibold text-dim transition duration-150 hover:border-edge-strong hover:text-ink active:scale-[0.97]"
     >
       Download CV
     </a>

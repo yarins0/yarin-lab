@@ -24,7 +24,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="scroll-mt-20 border-t border-glass-edge bg-canvas-tint/60 px-6 py-24"
+      className="scroll-mt-20 border-t border-glass-edge bg-canvas-tint/60 px-6 py-14"
     >
       <div className="mx-auto max-w-4xl text-center">
         <SectionHeader />
@@ -78,7 +78,7 @@ function SocialLink({
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className="rounded-full border border-glass-edge bg-glass px-6 py-2.5 text-sm font-medium text-dim backdrop-blur-sm transition-all duration-150 hover:border-edge-strong hover:text-ink"
+      className="focus-ring rounded-full border border-glass-edge bg-glass px-6 py-2.5 text-sm font-medium text-dim backdrop-blur-sm transition duration-150 hover:border-edge-strong hover:text-ink active:scale-[0.97]"
     >
       {label}
     </a>

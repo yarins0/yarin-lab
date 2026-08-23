@@ -28,7 +28,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       On hover the border brightens and a violet glow replaces the grey drop
       shadow that would be invisible on a dark canvas.
     */
-    <article className="group flex h-full flex-col rounded-2xl border border-glass-edge bg-glass p-6 backdrop-blur-md transition-all duration-200 hover:border-accent-mid/40 hover:shadow-lg hover:shadow-accent-mid/10">
+    <article className="group flex h-full flex-col rounded-2xl border border-glass-edge bg-glass p-6 backdrop-blur-md transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-accent-mid/40 hover:shadow-lg hover:shadow-accent-mid/10">
       <ProjectHeader name={project.name} />
       <CategoryBadges categories={project.categories} />
       {project.previewUrl ? (
@@ -85,7 +85,7 @@ function ProjectDescription({ description }: { description: string }) {
       {isLong && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="mt-1 text-xs font-medium text-accent hover:underline"
+          className="focus-ring mt-1 rounded-sm text-xs font-medium text-accent hover:underline"
         >
           {isExpanded ? "Show less" : "Show more"}
         </button>
@@ -108,7 +108,7 @@ function TechStack({ tags }: { tags: string[] }) {
       {hasMore && !isExpanded && (
         <button
           onClick={() => setIsExpanded(true)}
-          className="inline-flex items-center rounded-full bg-divider px-3 py-1 text-xs font-medium text-accent hover:bg-edge"
+          className="focus-ring inline-flex items-center rounded-full bg-divider px-3 py-1 text-xs font-medium text-accent transition duration-150 hover:bg-edge active:scale-[0.97]"
         >
           +{hiddenCount} more
         </button>
@@ -116,7 +116,7 @@ function TechStack({ tags }: { tags: string[] }) {
       {hasMore && isExpanded && (
         <button
           onClick={() => setIsExpanded(false)}
-          className="inline-flex items-center rounded-full bg-divider px-3 py-1 text-xs font-medium text-accent hover:bg-edge"
+          className="focus-ring inline-flex items-center rounded-full bg-divider px-3 py-1 text-xs font-medium text-accent transition duration-150 hover:bg-edge active:scale-[0.97]"
         >
           Show less
         </button>
@@ -141,7 +141,7 @@ function ProjectLinks({
           href={githubUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-dim underline-offset-2 transition-colors hover:text-ink hover:underline"
+          className="focus-ring rounded-sm text-dim underline-offset-2 transition-colors hover:text-ink hover:underline"
         >
           GitHub →
         </a>
@@ -156,7 +156,7 @@ function DemoLink({ href, internal }: { href: string; internal?: boolean }) {
     <a
       href={href}
       {...(!internal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="text-accent underline-offset-2 transition-colors hover:text-accent-dark hover:underline"
+      className="focus-ring rounded-sm text-accent underline-offset-2 transition-colors hover:text-accent-dark hover:underline"
     >
       Live Demo →
     </a>

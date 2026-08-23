@@ -11,7 +11,7 @@ import Contact from "@/components/sections/Contact";
 */
 export default function Home() {
   return (
-    <main className="pt-16">
+    <main id="main" className="pt-16">
       {/* pt-16 offsets the fixed navbar so the first section isn't hidden behind it */}
       <Hero />
       <Projects />

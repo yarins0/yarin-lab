@@ -40,7 +40,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="mx-auto max-w-4xl scroll-mt-20 px-6 py-24"
+      className="mx-auto max-w-4xl scroll-mt-20 px-6 py-14"
     >
       <SectionHeader />
       <SkillGroups groups={SKILL_GROUPS} />
@@ -84,7 +84,8 @@ function SkillGroup({
 }) {
   return (
     <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-6">
-      <span className="w-32 shrink-0 text-sm font-semibold text-faint sm:pt-1">
+      {/* Right-aligned so short labels sit next to the pills instead of leaving a ragged gutter */}
+      <span className="shrink-0 text-sm font-semibold text-faint sm:w-40 sm:pt-1 sm:text-right">
         {group.category}
       </span>
       <div className="flex flex-wrap gap-2">

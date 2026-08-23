@@ -30,7 +30,7 @@
   --color-ink:      #f4f4f5;       /* zinc-100 — headings, primary text         */
   --color-ink-soft: #d4d4d8;       /* zinc-300 — button hover state             */
   --color-body:     #a1a1aa;       /* zinc-400 — body paragraphs                */
-  --color-faint:    #71717a;       /* zinc-500 — footer, section labels         */
+  --color-faint:    #85858e;       /* footer, section labels — 5.3:1 on canvas  */
   --color-dim:      #d4d4d8;       /* zinc-300 — card links, secondary text     */
 
   /* ── Surfaces ───────────────────────────────────────────── */
@@ -75,6 +75,37 @@
   color-scheme: dark;
 }
 
+/*
+  Anchor navigation glides instead of jumping. scroll-padding-top clears the
+  16 (4rem) fixed navbar, so a section heading never lands underneath it.
+*/
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/*
+  One focus ring for every interactive element.
+
+  Defined once here rather than repeated as a six-class Tailwind string on each
+  control, so the ring can never drift between a nav link and a button. `outline`
+  is used instead of a box-shadow ring because it follows border-radius for free.
+*/
+.focus-ring:focus {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
 body {
   background: var(--color-canvas);
   color: var(--color-ink);
@@ -97,7 +128,8 @@ body::after {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: 9999;
+  /* Above every layer the page defines: glow -10, content 0, navbar 50, skip link 60 */
+  z-index: 70;
   pointer-events: none;
   opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");

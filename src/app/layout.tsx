@@ -41,8 +41,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+  // summary_large_image, because opengraph-image.tsx supplies a 1200x630 card
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Yarin Solomon — Software Developer",
     description:
       "Full-stack software developer with a CS background from Ben-Gurion University. Open to work.",
@@ -67,6 +68,13 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-canvas text-ink">
         <GlowBackdrop />
+        {/* First tab stop on every page: lets a keyboard user jump the whole navbar */}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-canvas"
+        >
+          Skip to content
+        </a>
         <Navbar />
         {children}
         <AnalyticsProvider />

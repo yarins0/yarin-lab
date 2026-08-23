@@ -77,12 +77,13 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
           selected={selectedCategories}
           onToggle={(category) => setSelectedCategories((current) => toggleValue(current, category))}
           onClear={() => setSelectedCategories([])}
+          allLabel="All areas"
           className=""
         />
         {hasActiveFilters && (
           <button
             onClick={clearFilters}
-            className="shrink-0 text-sm font-medium text-dim underline-offset-2 transition-colors hover:text-ink hover:underline"
+            className="focus-ring shrink-0 rounded-sm text-sm font-medium text-dim underline-offset-2 transition-colors hover:text-ink hover:underline"
           >
             Clear filters
           </button>
@@ -93,48 +94,76 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
         selected={activeSkills}
         onToggle={(skill) => setSelectedSkills((current) => toggleValue(current, skill))}
         onClear={() => setSelectedSkills([])}
+        allLabel="All tech"
         className="mb-6"
         trailing={
           availableSkills.length > SKILLS_PREVIEW_COUNT ? (
             <button
               onClick={() => setShowAllSkills((current) => !current)}
-              className="rounded-full border border-glass-edge bg-glass px-4 py-1.5 text-sm font-medium text-dim transition-colors hover:border-edge-strong hover:text-ink"
+              className="focus-ring rounded-full border border-glass-edge bg-glass px-4 py-1.5 text-sm font-medium text-dim transition duration-150 hover:border-edge-strong hover:text-ink active:scale-[0.97]"
             >
               {showAllSkills ? "Show less" : `Show more (+${availableSkills.length - SKILLS_PREVIEW_COUNT})`}
             </button>
           ) : null
         }
       />
-      <div
-        ref={scrollRef}
-        className="scrollbar-hide flex w-full snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2"
-      >
-        {visibleProjects.map((project) => (
-          <div
-            key={project.name}
-            className="flex w-[80%] flex-none snap-start sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
-          >
-            <ProjectCard project={project} />
-          </div>
-        ))}
-      </div>
+      {/*
+        The right-edge fade applies below `sm`, where a card is 80% wide and the
+        next one peeks. Without it the peek cuts through the middle of a letter,
+        which reads as an overflow bug rather than as a carousel.
+      */}
+      {visibleProjects.length === 0 ? (
+        <NoMatches onClear={clearFilters} />
+      ) : (
+        <div
+          ref={scrollRef}
+          className="scrollbar-hide flex w-full snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 [mask-image:linear-gradient(to_right,black_88%,transparent_100%)] sm:[mask-image:none]"
+        >
+          {visibleProjects.map((project) => (
+            <div
+              key={project.name}
+              className="flex w-[80%] flex-none snap-start sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+            >
+              <ProjectCard project={project} />
+            </div>
+          ))}
+        </div>
+      )}
 
-      <div className="mt-4 flex justify-end gap-2">
+      <div className="mt-4 flex justify-end gap-2" hidden={visibleProjects.length === 0}>
         <button
           onClick={() => scroll(-1)}
           aria-label="Previous projects"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-glass-edge bg-glass text-dim transition-colors hover:border-edge-strong hover:text-ink"
+          className="focus-ring flex h-8 w-8 items-center justify-center rounded-full border border-glass-edge bg-glass text-dim transition duration-150 hover:border-edge-strong hover:text-ink active:scale-95"
         >
           <ChevronLeft />
         </button>
         <button
           onClick={() => scroll(1)}
           aria-label="Next projects"
-          className="flex h-8 w-8 items-center justify-center rounded-full border border-glass-edge bg-glass text-dim transition-colors hover:border-edge-strong hover:text-ink"
+          className="focus-ring flex h-8 w-8 items-center justify-center rounded-full border border-glass-edge bg-glass text-dim transition duration-150 hover:border-edge-strong hover:text-ink active:scale-95"
         >
           <ChevronRight />
         </button>
       </div>
+    </div>
+  );
+}
+
+/*
+  Shown when the filters exclude every project. Without it the carousel renders
+  an empty strip, which reads as a broken page rather than as a narrow filter.
+*/
+function NoMatches({ onClear }: { onClear: () => void }) {
+  return (
+    <div className="rounded-2xl border border-dashed border-edge px-6 py-12 text-center">
+      <p className="text-sm text-body">No project matches every filter.</p>
+      <button
+        onClick={onClear}
+        className="focus-ring mt-3 rounded-full border border-glass-edge bg-glass px-4 py-1.5 text-sm font-medium text-dim transition duration-150 hover:border-edge-strong hover:text-ink active:scale-[0.97]"
+      >
+        Clear Filters
+      </button>
     </div>
   );
 }
@@ -144,6 +173,7 @@ function FilterBar<T extends string>({
   selected,
   onToggle,
   onClear,
+  allLabel,
   className,
   trailing,
 }: {
@@ -151,12 +181,14 @@ function FilterBar<T extends string>({
   selected: T[];
   onToggle: (option: T) => void;
   onClear: () => void;
+  /* Named per row ("All areas" / "All tech") — two rows both labelled "All" gave no clue which one was pressed */
+  allLabel: string;
   className: string;
   trailing?: ReactNode;
 }) {
   return (
     <div className={`flex flex-wrap gap-2 ${className}`}>
-      <FilterButton isActive={selected.length === 0} onClick={onClear} label="All" />
+      <FilterButton isActive={selected.length === 0} onClick={onClear} label={allLabel} />
       {options.map((option) => (
         <FilterButton
           key={option}
@@ -182,7 +214,7 @@ function FilterButton({
   return (
     <button
       onClick={onClick}
-      className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
+      className={`focus-ring rounded-full border px-4 py-1.5 text-sm font-medium transition duration-150 active:scale-[0.97] ${
         isActive
           ? // text-canvas, not white: the accent is a light violet, so dark text on it is what reads
             "border-accent bg-accent font-semibold text-canvas"

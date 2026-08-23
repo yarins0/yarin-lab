@@ -62,7 +62,7 @@ function OpenToWorkBadge() {
 function Name({ name }: { name: string }) {
   return (
     <h1 className="mb-3 pb-2 text-5xl font-bold leading-[1.1] tracking-tight text-ink sm:text-6xl">
-      Hi, I&apos;m <span className="text-gradient">{name}</span>
+      Hi, I&rsquo;m <span className="text-gradient">{name}</span>
     </h1>
   );
 }
@@ -109,7 +109,7 @@ function CtaButtons({
       */}
       <a
         href={ctaHref}
-        className="bg-gradient-accent rounded-full px-8 py-3.5 text-sm font-semibold text-canvas shadow-lg shadow-accent-mid/25 transition-all duration-150 hover:shadow-xl hover:shadow-accent-mid/40 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+        className="focus-ring bg-gradient-accent rounded-full px-8 py-3.5 text-sm font-semibold text-canvas shadow-lg shadow-accent-mid/25 transition duration-150 hover:shadow-xl hover:shadow-accent-mid/40 hover:brightness-110 active:scale-[0.97]"
       >
         {ctaLabel}
       </a>
@@ -117,7 +117,7 @@ function CtaButtons({
       <a
         href={cvPath}
         download
-        className="rounded-full border border-glass-edge bg-glass px-8 py-3.5 text-sm font-semibold text-dim backdrop-blur-sm transition-all duration-150 hover:border-edge-strong hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-edge-strong focus-visible:ring-offset-2 focus-visible:ring-offset-canvas"
+        className="focus-ring rounded-full border border-glass-edge bg-glass px-8 py-3.5 text-sm font-semibold text-dim backdrop-blur-sm transition duration-150 hover:border-edge-strong hover:text-ink active:scale-[0.97]"
       >
         Download CV
       </a>

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
 const VIDEO_EXTENSIONS = [".mp4", ".webm"];
 
@@ -38,7 +39,7 @@ export default function ProjectPreview({
         onMouseLeave={() => setIsDescriptionVisible(false)}
         onFocus={() => setIsDescriptionVisible(true)}
         onBlur={() => setIsDescriptionVisible(false)}
-        className="block aspect-video w-full overflow-hidden rounded-xl border border-edge bg-divider"
+        className="focus-ring block aspect-video w-full overflow-hidden rounded-xl border border-edge bg-divider"
       >
         <PreviewMedia previewUrl={previewUrl} projectName={projectName} />
       </button>
@@ -63,13 +64,18 @@ function PreviewMedia({
   previewUrl: string;
   projectName: string;
 }) {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   if (isVideoFile(previewUrl)) {
     return (
       <video
         src={previewUrl}
         muted
         loop
-        autoPlay
+        // A decorative loop must not play on its own when the visitor asked for
+        // reduced motion. The controls then let them start it deliberately.
+        autoPlay={!prefersReducedMotion}
+        controls={prefersReducedMotion}
         playsInline
         className="h-full w-full object-cover"
       />
