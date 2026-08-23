@@ -10,7 +10,7 @@
 */
 export default function Badge({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-glass-edge bg-divider px-3 py-1 text-xs font-medium text-body">
+    <span className="inline-flex items-center rounded-full border border-glass-edge bg-divider px-3 py-1 text-xs font-medium text-body transition duration-150 hover:-translate-y-0.5 hover:border-accent-mid/40 hover:text-accent">
       {label}
     </span>
   );

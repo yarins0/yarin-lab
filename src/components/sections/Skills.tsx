@@ -6,34 +6,30 @@ import Badge from "@/components/ui/Badge";
 const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   {
     category: "Languages",
-    tags: ["Python", "Java", "Kotlin", "C", "C#", "C++", "JavaScript", "TypeScript", "Assembly"],
+    tags: ["Python", "TypeScript", "JavaScript", "Java", "C#", "Kotlin"],
   },
   {
-    category: "Web / Full-Stack",
-    tags: ["React", "React Native", "Expo", "Next.js", "Node.js", "Express", "Fastify", "Vite", "HTML", "CSS", "Tailwind CSS", "REST APIs", "OAuth 2.0", "JWT",  "FastAPI", "WebRTC", "Twilio"],
+    category: "Web & Full-Stack",
+    tags: ["React", "Next.js", "Node.js", "Express", "FastAPI", "REST APIs"],
+  },
+  {
+    category: "AI & ML",
+    tags: ["Anthropic Claude API", "PyTorch", "LangChain", "LangGraph", "OpenAI Realtime API", "OpenAI Whisper API"],
   },
   {
     category: "Databases",
-    tags: ["PostgreSQL", "Supabase", "MySQL", "MongoDB", "Prisma ORM", "SQL", "NoSQL", "SQLite", "ChromaDB"],
+    tags: ["PostgreSQL", "Supabase", "SQLite", "MongoDB", "ChromaDB"],
   },
   {
-    category: "DevOps & Tools",
-    tags: ["AWS", "AWS EKS", "Terraform (IaC)", "Docker", "Kubernetes", "Helm", "Prometheus", "Grafana", "Git", "GitHub", "GitHub Actions", "CI/CD", "Linux Servers & VMs", "Networks", "Claude Code", "Cursor"],
-  },
-  {
-    category: "ML & AI",
-    tags: ["PyTorch", "LangChain", "LangGraph", "Anthropic Claude API", "OpenAI Realtime API", "OpenAI Whisper API"],
-  },
-  {
-    category: "Operating Systems & Platforms",
-    tags: ["Windows", "UNIX", "Linux", "Unity 6", "VS Code", "PyCharm"],
+    category: "DevOps & Cloud",
+    tags: ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD"],
   },
 ];
 // ============================================================
 
 /*
-  Skills — a section listing technical competencies grouped by category.
-  Each group renders a label followed by a row of Badge pills.
+  Skills — a curated grid of category cards, each a short highlight list rather
+  than an exhaustive inventory (the project cards already carry full tech stacks).
   Reuses Badge directly — same component used in ProjectCard tech stacks.
 */
 export default function Skills() {
@@ -62,14 +58,14 @@ function SectionHeader() {
   );
 }
 
-/* Renders all skill groups stacked vertically */
+/* Renders skill groups as cards in a responsive grid */
 function SkillGroups({
   groups,
 }: {
   groups: { category: string; tags: string[] }[];
 }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {groups.map((group) => (
         <SkillGroup key={group.category} group={group} />
       ))}
@@ -77,18 +73,15 @@ function SkillGroups({
   );
 }
 
-/* A single category row: label on the left, badges on the right */
+/* A single category card: heading on top, badges flowing below — mirrors ProjectCard's glass style */
 function SkillGroup({
   group,
 }: {
   group: { category: string; tags: string[] };
 }) {
   return (
-    <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:gap-6">
-      {/* Right-aligned so short labels sit next to the pills instead of leaving a ragged gutter */}
-      <span className="shrink-0 text-sm font-semibold text-faint sm:w-40 sm:pt-1 sm:text-right">
-        {group.category}
-      </span>
+    <div className="rounded-2xl border border-glass-edge bg-glass p-6 backdrop-blur-md transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-accent-mid/40 hover:shadow-lg hover:shadow-accent-mid/10">
+      <h3 className="mb-3 text-sm font-semibold text-faint">{group.category}</h3>
       <div className="flex flex-wrap gap-2">
         {group.tags.map((tag) => (
           <Badge key={tag} label={tag} />

@@ -117,7 +117,7 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
       ) : (
         <div
           ref={scrollRef}
-          className="scrollbar-hide flex w-full snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 [mask-image:linear-gradient(to_right,black_88%,transparent_100%)] sm:[mask-image:none]"
+          className="scrollbar-hide flex w-full snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pt-2 pb-2 [mask-image:linear-gradient(to_right,black_88%,transparent_100%)] sm:[mask-image:none]"
         >
           {visibleProjects.map((project) => (
             <div
