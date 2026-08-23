@@ -40,7 +40,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="mx-auto max-w-4xl scroll-mt-20 px-6 py-14"
+      className="mx-auto max-w-6xl scroll-mt-20 px-6 py-14"
     >
       <SectionHeader />
       <SkillGroups groups={SKILL_GROUPS} />
@@ -50,11 +50,12 @@ export default function Skills() {
 
 function SectionHeader() {
   return (
-    <div className="mb-12 text-center">
-      <h2 className="mb-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+    /* Left-aligned to match Projects, so both section headers share one edge */
+    <div className="mb-10">
+      <h2 className="mb-3 text-3xl font-bold tracking-tight text-balance text-ink sm:text-4xl">
         Skills
       </h2>
-      <p className="text-base text-body">
+      <p className="max-w-prose text-base text-pretty text-body">
         Technologies and tools I work with.
       </p>
     </div>

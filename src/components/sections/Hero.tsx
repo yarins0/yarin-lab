@@ -27,9 +27,11 @@ const CONTENT = {
 */
 export default function Hero() {
   return (
+    /* dvh, not vh: on iOS Safari the address bar changes vh mid-scroll, which
+       makes a vh-sized hero jump. dvh tracks the visible viewport instead. */
     <section
       id="about"
-      className="mx-auto flex min-h-[90vh] max-w-4xl scroll-mt-20 flex-col items-center justify-center px-6 py-24 text-center"
+      className="mx-auto flex min-h-[90dvh] max-w-4xl scroll-mt-20 flex-col items-center justify-center px-6 py-24 text-center"
     >
       <OpenToWorkBadge />
       <Name name={CONTENT.name} />
@@ -61,7 +63,7 @@ function OpenToWorkBadge() {
 */
 function Name({ name }: { name: string }) {
   return (
-    <h1 className="mb-3 pb-2 text-5xl font-bold leading-[1.1] tracking-tight text-ink sm:text-6xl">
+    <h1 className="mb-3 pb-2 text-5xl font-bold leading-[1.1] tracking-tight text-balance text-ink sm:text-6xl">
       Hi, I&rsquo;m <span className="text-gradient">{name}</span>
     </h1>
   );
@@ -79,7 +81,9 @@ function Headline({ headline }: { headline: string }) {
 /* Short bio paragraph */
 function Bio({ bio }: { bio: string }) {
   return (
-    <p className="mb-10 max-w-2xl text-base leading-relaxed text-body sm:text-lg">
+    /* Measured in ch so the line stays near 65 characters at any font size.
+       max-w-2xl ran to roughly 85, which is past comfortable reading width. */
+    <p className="mb-10 max-w-[62ch] text-base leading-relaxed text-pretty text-body sm:text-lg">
       {bio}
     </p>
   );

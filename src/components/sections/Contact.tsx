@@ -39,10 +39,10 @@ export default function Contact() {
 function SectionHeader() {
   return (
     <>
-      <h2 className="mb-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+      <h2 className="mb-3 text-3xl font-bold tracking-tight text-balance text-ink sm:text-4xl">
         Get in Touch
       </h2>
-      <p className="mb-8 text-base text-body">
+      <p className="mx-auto mb-8 max-w-prose text-base text-pretty text-body">
         Open to new roles and interesting projects. Drop a message or reach out
         directly.
       </p>

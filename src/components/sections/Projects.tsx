@@ -140,7 +140,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="mx-auto max-w-4xl scroll-mt-20 px-6 py-14"
+      className="mx-auto max-w-6xl scroll-mt-20 px-6 py-14"
     >
       <SectionHeader githubUrl={GITHUB_PROFILE_URL} />
       <ProjectCarousel projects={PROJECTS} />
@@ -151,11 +151,14 @@ export default function Projects() {
 /* Section title and subtitle */
 function SectionHeader({ githubUrl }: { githubUrl: string }) {
   return (
-    <div className="mb-12 text-center">
-      <h2 className="mb-3 text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+    /* Left-aligned: a centred header over a left-aligned card row is the tell
+       the redesign audit flags as templated. The cards set the edge, so the
+       header follows it. */
+    <div className="mb-10">
+      <h2 className="mb-3 text-3xl font-bold tracking-tight text-balance text-ink sm:text-4xl">
         Projects
       </h2>
-      <p className="text-base text-body">
+      <p className="max-w-prose text-base text-pretty text-body">
         A selection of things I&rsquo;ve built. More on{" "}
         <a
           href={githubUrl}

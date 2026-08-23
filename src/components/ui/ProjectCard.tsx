@@ -79,7 +79,7 @@ function ProjectDescription({ description }: { description: string }) {
 
   return (
     <div className="mb-4">
-      <p className={`text-sm leading-relaxed text-body${isExpanded ? "" : " line-clamp-6"}`}>
+      <p className={`text-sm leading-relaxed text-pretty text-body${isExpanded ? "" : " line-clamp-6"}`}>
         {description}
       </p>
       {isLong && (
