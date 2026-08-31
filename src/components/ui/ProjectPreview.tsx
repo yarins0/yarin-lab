@@ -29,7 +29,8 @@ export default function ProjectPreview({
   const [isDescriptionVisible, setIsDescriptionVisible] = useState(false);
 
   return (
-    <div className="relative mb-4">
+    /* Not `relative`: the overlay below anchors to the card, so the card must stay the positioned ancestor */
+    <div className="mb-4">
       <button
         type="button"
         aria-expanded={isDescriptionVisible}
@@ -43,10 +44,14 @@ export default function ProjectPreview({
       >
         <PreviewMedia previewUrl={previewUrl} projectName={projectName} />
       </button>
-      {/* The overlay starts at the top of the media and grows past its bottom edge, so no text is ever clipped */}
+      {/*
+        The overlay covers the whole card, not just the media box. A box sized to
+        the media grew past the card to fit a long description, and that overflow
+        made the carousel row scrollable on the vertical axis.
+      */}
       <span
         aria-hidden={!isDescriptionVisible}
-        className={`pointer-events-none absolute inset-x-0 top-0 z-10 min-h-full rounded-xl border border-glass-edge bg-canvas/90 p-4 text-sm leading-relaxed text-body shadow-lg backdrop-blur-xl transition-opacity duration-200 ${
+        className={`pointer-events-none absolute inset-0 z-10 overflow-hidden rounded-2xl border border-glass-edge bg-canvas/90 p-6 text-sm leading-relaxed text-body shadow-lg backdrop-blur-xl transition-opacity duration-200 ${
           isDescriptionVisible ? "opacity-100" : "opacity-0"
         }`}
       >

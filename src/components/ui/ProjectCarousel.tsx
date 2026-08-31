@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import ProjectCard, { type Category, type Project } from "@/components/ui/ProjectCard";
 
 interface ProjectCarouselProps {
@@ -13,6 +13,10 @@ function toggleValue<T>(selected: T[], value: T): T[] {
 }
 
 const SKILLS_PREVIEW_COUNT = 15;
+/* Matches the `gap-6` between the cards in the scroll row */
+const CARD_GAP_PX = 24;
+/* One flick of the wheel sends several ticks. Without a cooldown they cross the whole row. */
+const WHEEL_STEP_COOLDOWN_MS = 300;
 
 export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -57,6 +61,53 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
   });
 
   const hasActiveFilters = selectedCategories.length > 0 || selectedSkills.length > 0;
+
+  /*
+    Turns a vertical wheel gesture over the row into horizontal travel: down moves
+    right, up moves left. The row is the only thing under the pointer that can
+    scroll sideways, so a mouse with no horizontal wheel could not reach it.
+
+    The listener is registered by hand rather than through `onWheel`, because React
+    registers wheel handlers as passive and a passive handler cannot call
+    `preventDefault`.
+  */
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    let lastStepTime = 0;
+
+    const handleWheel = (event: WheelEvent) => {
+      // A trackpad swipe already scrolls the row. Only take over the vertical axis.
+      if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+
+      const isAtStart = container.scrollLeft <= 0;
+      const isAtEnd =
+        container.scrollLeft >= container.scrollWidth - container.clientWidth - 1;
+      // At either end the row has nowhere to go, so the page scrolls past it as normal.
+      if ((event.deltaY < 0 && isAtStart) || (event.deltaY > 0 && isAtEnd)) return;
+
+      // Claimed before the cooldown check, so the page stays still between steps.
+      event.preventDefault();
+      if (event.timeStamp - lastStepTime < WHEEL_STEP_COOLDOWN_MS) return;
+      lastStepTime = event.timeStamp;
+
+      /*
+        A whole card, not the wheel delta. `snap-mandatory` puts the row back on a
+        snap point after every scroll, so a step shorter than half a card returns
+        to the card it started on and the row never moves.
+      */
+      const firstCard = container.firstElementChild;
+      const step = firstCard
+        ? firstCard.getBoundingClientRect().width + CARD_GAP_PX
+        : container.clientWidth;
+      container.scrollBy({ left: Math.sign(event.deltaY) * step, behavior: "smooth" });
+    };
+
+    container.addEventListener("wheel", handleWheel, { passive: false });
+    return () => container.removeEventListener("wheel", handleWheel);
+    // The row unmounts when a filter excludes every project, so a new element needs a new listener.
+  }, [visibleProjects.length]);
 
   function scroll(direction: 1 | -1) {
     const container = scrollRef.current;
@@ -117,7 +168,13 @@ export default function ProjectCarousel({ projects }: ProjectCarouselProps) {
       ) : (
         <div
           ref={scrollRef}
-          className="scrollbar-hide flex w-full snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pt-2 pb-2 [mask-image:linear-gradient(to_right,black_88%,transparent_100%)] sm:[mask-image:none]"
+          /*
+            `overflow-y-hidden` is explicit: `overflow-x-auto` on its own makes the
+            other axis scrollable too, and the row must never scroll vertically.
+            `scroll-smooth` is left off so the wheel tracks the gesture — the arrow
+            buttons ask for smooth behaviour themselves.
+          */
+          className="scrollbar-hide flex w-full snap-x snap-mandatory gap-6 overflow-x-auto overflow-y-hidden pt-2 pb-2 [mask-image:linear-gradient(to_right,black_88%,transparent_100%)] sm:[mask-image:none]"
         >
           {visibleProjects.map((project) => (
             <div

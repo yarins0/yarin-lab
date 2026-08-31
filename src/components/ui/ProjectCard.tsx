@@ -28,7 +28,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       On hover the border brightens and a violet glow replaces the grey drop
       shadow that would be invisible on a dark canvas.
     */
-    <article className="group flex h-full flex-col rounded-2xl border border-glass-edge bg-glass p-6 backdrop-blur-md transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-accent-mid/40 hover:shadow-lg hover:shadow-accent-mid/10">
+    <article className="group relative flex h-full flex-col rounded-2xl border border-glass-edge bg-glass p-6 backdrop-blur-md transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-accent-mid/40 hover:shadow-lg hover:shadow-accent-mid/10">
       <ProjectHeader name={project.name} />
       <CategoryBadges categories={project.categories} />
       {project.previewUrl ? (
