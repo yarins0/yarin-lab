@@ -9,6 +9,21 @@ const GITHUB_PROFILE_URL = "https://github.com/yarins0";
 
 const PROJECTS: Project[] = [
   {
+    name: "Reign & Gain",
+    categories: ["Backend", "Fullstack"],
+    description:
+      "A mobile fitness RPG where verified real-world workouts drive turn-based roguelite progression — " +
+      "XP, stats, gold, and loot. The Unity 6 client is built entirely in C# at runtime: no prefabs, one near-empty " +
+      "bootstrap scene, and procedurally generated UI textures instead of art assets. " +
+      "Combat rules live in a pure synchronous engine with no Unity types in the maths, driven by seeded RNG " +
+      "so any run reproduces from its seed, and covered by an EditMode suite plus an autopilot that walks a full run unattended. " +
+      "Behind it, the client is untrusted: a Kotlin host reads Health Connect on-device and uploads raw signals — never a verdict — " +
+      "and a Fastify server re-scores them through composable signal checkers before awarding anything. " +
+      "Reward formulas live in Postgres, tunable without a redeploy, with row-level security keeping every authoritative table server-write-only.",
+    techStack: ["Unity 6", "C#", "Fastify", "Node.js", "TypeScript", "Kotlin", "PostgreSQL", "Supabase", "Zod", "Row-Level Security", "REST APIs", "Testcontainers"],
+    liveDemoUrl: "https://getsweatygames.com/reignandgain",
+  },
+  {
     name: "AI Conductor",
     categories: ["AI Engineering", "Fullstack"],
     description:
@@ -36,21 +51,6 @@ const PROJECTS: Project[] = [
     techStack: ["Anthropic Claude API", "LangGraph", "Python", "FastAPI", "Telethon", "whatsapp-web.js", "Node.js", "ChromaDB", "SQLite", "APScheduler", "BeautifulSoup", "Pydantic"],
     githubUrl: `${GITHUB_PROFILE_URL}/whatsapp-job-screener`,
     liveDemoUrl: "https://t.me/myjobscreener_bot",
-  },
-  {
-    name: "Reign & Gain",
-    categories: ["Backend", "Fullstack"],
-    description:
-      "A mobile fitness RPG where verified real-world workouts drive turn-based roguelite progression — " +
-      "XP, stats, gold, and loot. The Unity 6 client is built entirely in C# at runtime: no prefabs, one near-empty " +
-      "bootstrap scene, and procedurally generated UI textures instead of art assets. " +
-      "Combat rules live in a pure synchronous engine with no Unity types in the maths, driven by seeded RNG " +
-      "so any run reproduces from its seed, and covered by an EditMode suite plus an autopilot that walks a full run unattended. " +
-      "Behind it, the client is untrusted: a Kotlin host reads Health Connect on-device and uploads raw signals — never a verdict — " +
-      "and a Fastify server re-scores them through composable signal checkers before awarding anything. " +
-      "Reward formulas live in Postgres, tunable without a redeploy, with row-level security keeping every authoritative table server-write-only.",
-    techStack: ["Unity 6", "C#", "Fastify", "Node.js", "TypeScript", "Kotlin", "PostgreSQL", "Supabase", "Zod", "Row-Level Security", "REST APIs", "Testcontainers"],
-    liveDemoUrl: "https://getsweatygames.com/reignandgain",
   },
   {
     name: "Backgammon AI",
@@ -114,6 +114,22 @@ const PROJECTS: Project[] = [
     techStack: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "OAuth 2.0", "REST APIs", "JWT", "Vite"],
     githubUrl: `${GITHUB_PROFILE_URL}/TuneCraft`,
     liveDemoUrl: "https://tune-craft-seven.vercel.app/",
+  },
+  {
+    name: "AI Crypto Advisor",
+    categories: ["Fullstack", "AI Engineering"],
+    description:
+      "A personalised crypto dashboard built as a TypeScript npm-workspaces monorepo. " +
+      "A short onboarding quiz drives four server-composed sections — news, prices, an AI insight, and a meme — " +
+      "so the client makes one round trip and never learns which third-party APIs exist. " +
+      "Every integration degrades through three tiers: live fetch, then stale cache, then committed static fallback, " +
+      "and each section reports which tier answered it. " +
+      "The Vercel SPA rewrites /api/* to the Render API, so one origin makes the refresh cookie first-party " +
+      "and SameSite=Lax blocks CSRF without token machinery. " +
+      "Votes are stored with a frozen snapshot of the preferences that produced the item, so they are usable as training data.",
+    techStack: ["TypeScript", "React", "Express", "Node.js", "MongoDB", "Zod", "TanStack Query", "Recharts", "Vite", "Vitest", "Hugging Face API"],
+    githubUrl: `${GITHUB_PROFILE_URL}/ai-crypto-advisor`,
+    liveDemoUrl: "https://ai-crypto-advisor-yarins0.vercel.app",
   },
   {
     name: "faceb00k.com",

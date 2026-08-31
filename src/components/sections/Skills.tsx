@@ -10,7 +10,7 @@ const SKILL_GROUPS: { category: string; tags: string[] }[] = [
   },
   {
     category: "Web & Full-Stack",
-    tags: ["React", "Next.js", "Node.js", "Express", "FastAPI", "REST APIs"],
+    tags: ["React", "Next.js", "Node.js", "Express", "FastAPI", "Zod", "REST APIs"],
   },
   {
     category: "AI & ML",
