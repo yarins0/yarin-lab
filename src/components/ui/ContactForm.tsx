@@ -105,7 +105,7 @@ export default function ContactForm() {
         id="name"
         label="Name"
         type="text"
-        placeholder="Maya Ben-Ari"
+        placeholder="Israela Israeli"
         autoComplete="name"
         required
         disabled={isSubmitting || isSuccess}
@@ -115,7 +115,7 @@ export default function ContactForm() {
         id="email"
         label="Email"
         type="email"
-        placeholder="maya@example.com"
+        placeholder="israela@example.com"
         autoComplete="email"
         required
         disabled={isSubmitting || isSuccess}
