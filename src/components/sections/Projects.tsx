@@ -78,6 +78,7 @@ const PROJECTS: Project[] = [
     techStack: ["React", "TypeScript", "Vite", "FastAPI", "Python", "OpenAI Whisper API", "Anthropic Claude API", "python-docx", "FFmpeg", "Docker"],
     githubUrl: `${GITHUB_PROFILE_URL}/meeting-transcription-system`,
     liveDemoUrl: "https://meeting-transcription-system.vercel.app/",
+    previewUrl: "/previews/meeting-transcription.png",
   },
   {
     name: "Name Generator on AWS EKS",
@@ -90,6 +91,7 @@ const PROJECTS: Project[] = [
       "and a scripted teardown destroys everything in dependency order so no orphaned volume keeps billing.",
     techStack: ["Terraform", "AWS EKS", "Kubernetes", "Docker", "GitHub Actions", "Helm", "Prometheus", "Grafana", "Amazon ECR", "Node.js", "Express", "MongoDB"],
     githubUrl: `${GITHUB_PROFILE_URL}/random-name-gen-app`,
+    previewUrl: "/previews/name-generator-eks.png",
   },
   {
     name: "MusicSwipe",
@@ -114,6 +116,7 @@ const PROJECTS: Project[] = [
     techStack: ["React", "TypeScript", "Node.js", "Express", "PostgreSQL", "Prisma", "OAuth 2.0", "REST APIs", "JWT", "Vite"],
     githubUrl: `${GITHUB_PROFILE_URL}/TuneCraft`,
     liveDemoUrl: "https://tune-craft-seven.vercel.app/",
+    previewUrl: "/previews/tunecraft.png",
   },
   {
     name: "AI Crypto Advisor",
@@ -130,6 +133,7 @@ const PROJECTS: Project[] = [
     techStack: ["TypeScript", "React", "Express", "Node.js", "MongoDB", "Zod", "TanStack Query", "Recharts", "Vite", "Vitest", "Hugging Face API"],
     githubUrl: `${GITHUB_PROFILE_URL}/ai-crypto-advisor`,
     liveDemoUrl: "https://ai-crypto-advisor-yarins0.vercel.app",
+    previewUrl: "/previews/ai-crypto-advisor.png",
   },
   {
     name: "faceb00k.com",
@@ -142,6 +146,7 @@ const PROJECTS: Project[] = [
     techStack: ["Node.js", "Express", "MySQL", "HTML5", "CSS3"],
     githubUrl: `${GITHUB_PROFILE_URL}/faceb00k.com`,
     liveDemoUrl: "/faceb00k/",
+    previewUrl: "/previews/faceb00k.png",
   },
 ];
 // ============================================================
