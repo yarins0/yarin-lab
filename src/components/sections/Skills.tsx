@@ -65,7 +65,8 @@ function SkillGroups({
   groups: { category: string; tags: string[] }[];
 }) {
   return (
-    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    /* Flex wrap instead of grid so the last, partly filled row centers itself */
+    <div className="flex flex-wrap justify-center gap-6">
       {groups.map((group) => (
         <SkillGroup key={group.category} group={group} />
       ))}
@@ -80,7 +81,7 @@ function SkillGroup({
   group: { category: string; tags: string[] };
 }) {
   return (
-    <div className="rounded-2xl border border-glass-edge bg-glass p-6 backdrop-blur-md transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-accent-mid/40 hover:shadow-lg hover:shadow-accent-mid/10">
+    <div className="w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1rem)] rounded-2xl border border-glass-edge bg-glass p-6 backdrop-blur-md transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-accent-mid/40 hover:shadow-lg hover:shadow-accent-mid/10">
       <h3 className="mb-3 text-sm font-semibold text-faint">{group.category}</h3>
       <div className="flex flex-wrap gap-2">
         {group.tags.map((tag) => (
