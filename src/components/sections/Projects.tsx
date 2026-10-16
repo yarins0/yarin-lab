@@ -22,6 +22,7 @@ const PROJECTS: Project[] = [
       "Reward formulas live in Postgres, tunable without a redeploy, with row-level security keeping every authoritative table server-write-only.",
     techStack: ["Unity 6", "C#", "Fastify", "Node.js", "TypeScript", "Kotlin", "PostgreSQL", "Supabase", "Zod", "Row-Level Security", "REST APIs", "Testcontainers"],
     liveDemoUrl: "https://getsweatygames.com/reignandgain",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.getsweatygames.reignandgain",
   },
   {
     name: "AI Conductor",

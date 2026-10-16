@@ -57,31 +57,54 @@ function SectionHeader() {
 function SocialLinks() {
   return (
     <div className="flex flex-wrap items-center justify-center gap-4">
-      <SocialLink href={`mailto:${CONTACT.email}`} label={CONTACT.email} />
-      <SocialLink href={CONTACT.githubUrl} label="GitHub" external />
-      <SocialLink href={CONTACT.linkedinUrl} label="LinkedIn" external />
+      <SocialLink href={`mailto:${CONTACT.email}`} label={`Email ${CONTACT.email}`}>
+        <EnvelopeIcon />
+      </SocialLink>
+      <SocialLink href={CONTACT.githubUrl} label="GitHub" external>
+        <img src="/icons/github.svg" alt="" className="size-5" />
+      </SocialLink>
+      <SocialLink href={CONTACT.linkedinUrl} label="LinkedIn" external>
+        <img src="/icons/linkedin.png" alt="" className="size-5 object-contain" />
+      </SocialLink>
     </div>
   );
 }
 
+/*
+  Icon-only round button. The visible label is gone, so aria-label and
+  title carry the link name for screen readers and hover.
+*/
 function SocialLink({
   href,
   label,
   external = false,
+  children,
 }: {
   href: string;
   label: string;
   external?: boolean;
+  children: React.ReactNode;
 }) {
   return (
     <a
       href={href}
+      aria-label={label}
+      title={label}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className="focus-ring rounded-full border border-glass-edge bg-glass px-6 py-2.5 text-sm font-medium text-dim backdrop-blur-sm transition duration-150 hover:border-edge-strong hover:text-ink active:scale-[0.97]"
+      className="focus-ring flex items-center justify-center rounded p-1 text-dim opacity-80 transition duration-150 hover:text-ink hover:opacity-100 active:scale-[0.97]"
     >
-      {label}
+      {children}
     </a>
+  );
+}
+
+function EnvelopeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} className="size-5" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="m3 7 9 6 9-6" />
+    </svg>
   );
 }
 
