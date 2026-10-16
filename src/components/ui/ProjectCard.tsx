@@ -14,6 +14,8 @@ export type Project = {
   githubUrl?: string;
   liveDemoUrl?: string;
   internalDemo?: boolean;
+  playStoreUrl?: string;
+  appStoreUrl?: string;
   // Picture, GIF, or video shown in the place of the description. Without it the card shows the text.
   previewUrl?: string;
 };
@@ -45,6 +47,8 @@ export default function ProjectCard({ project }: { project: Project }) {
         githubUrl={project.githubUrl}
         liveDemoUrl={project.liveDemoUrl}
         internalDemo={project.internalDemo}
+        playStoreUrl={project.playStoreUrl}
+        appStoreUrl={project.appStoreUrl}
       />
     </article>
   );
@@ -129,10 +133,14 @@ function ProjectLinks({
   githubUrl,
   liveDemoUrl,
   internalDemo,
+  playStoreUrl,
+  appStoreUrl,
 }: {
   githubUrl?: string;
   liveDemoUrl?: string;
   internalDemo?: boolean;
+  playStoreUrl?: string;
+  appStoreUrl?: string;
 }) {
   return (
     <div className="mt-auto flex items-center gap-4 text-sm font-medium">
@@ -147,6 +155,8 @@ function ProjectLinks({
         </a>
       )}
       {liveDemoUrl && <DemoLink href={liveDemoUrl} internal={internalDemo} />}
+      {playStoreUrl && <StoreLink href={playStoreUrl} label="Google Play" />}
+      {appStoreUrl && <StoreLink href={appStoreUrl} label="App Store" />}
     </div>
   );
 }
@@ -159,6 +169,19 @@ function DemoLink({ href, internal }: { href: string; internal?: boolean }) {
       className="focus-ring rounded-sm text-accent underline-offset-2 transition-colors hover:text-accent-dark hover:underline"
     >
       Live Demo →
+    </a>
+  );
+}
+
+function StoreLink({ href, label }: { href: string; label: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="focus-ring rounded-sm text-dim underline-offset-2 transition-colors hover:text-ink hover:underline"
+    >
+      {label} →
     </a>
   );
 }
